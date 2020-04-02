@@ -9,7 +9,7 @@ class BillsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit bills_url
-    assert_selector "h1", text: "Bills"
+    assert_selector "h1", text: "法案一覧"
   end
 
   test "creating a Bill" do
