@@ -3,7 +3,8 @@
 one:
   title: MyString
   proposer: MyString
-  session_number: 1
+  submitted_session_number: 1
+  discussed_session_number: 1
   bill_number: 1
   proposal: MyText
   outline: MyText
@@ -12,7 +13,8 @@ one:
 two:
   title: MyString
   proposer: MyString
-  session_number: 1
+  submitted_session_number: 1
+  discussed_session_number: 1
   bill_number: 1
   proposal: MyText
   outline: MyText
