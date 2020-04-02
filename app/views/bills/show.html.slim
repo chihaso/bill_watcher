@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @bill.title
+p
+  strong Proposer:
+  = @bill.proposer
+p
+  strong Session number:
+  = @bill.session_number
+p
+  strong Bill number:
+  = @bill.bill_number
+p
+  strong Proposal:
+  = @bill.proposal
+p
+  strong Outline:
+  = @bill.outline
+p
+  strong Status:
+  = @bill.status
+
+=> link_to 'Edit', edit_bill_path(@bill)
+'|
+=< link_to 'Back', bills_path
