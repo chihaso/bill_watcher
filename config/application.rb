@@ -19,5 +19,6 @@ module BillWatcher
     # the framework and any gems in your application.
 
     config.generators.template_engine = :slim
+    config.autoload_paths << Rails.root.join("lib")
   end
 end
