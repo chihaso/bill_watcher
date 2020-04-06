@@ -9,6 +9,6 @@ class BillsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit bills_url
-    assert_selector "h1", text: "法案一覧"
+    assert_selector "h1", text: I18n.t("bills.index.title")
   end
 end

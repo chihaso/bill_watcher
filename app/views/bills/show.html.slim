@@ -1,28 +1,28 @@
 p#notice = notice
 
 p
-  strong Title:
+  strong = t(".bill_title") + ": "
   = @bill.title
 p
-  strong Proposer:
+  strong = t(".proposer") + ": "
   = @bill.proposer
 p
-  strong Submitted Session number:
+  strong = t(".submitted_session") + ": "
   = @bill.submitted_session_number
 p
-  strong Discussed Session number:
+  strong = t(".discussed_session") + ": "
   = @bill.discussed_session_number
 p
-  strong Bill number:
+  strong = t(".bill_number") + ": "
   = @bill.bill_number
 p
-  strong Proposal:
+  strong = t(".proposal") + ": "
   = @bill.proposal
 p
-  strong Outline:
+  strong = t(".outline") + ": "
   = @bill.outline
 p
-  strong Status:
+  strong = t(".status")+ ": "
   = @bill.status
 
-=< link_to 'Back', bills_path
+=< link_to t(".back"), bills_path

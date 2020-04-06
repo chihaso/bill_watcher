@@ -19,6 +19,7 @@ module BillWatcher
     # the framework and any gems in your application.
 
     config.generators.template_engine = :slim
-    config.autoload_paths << Rails.root.join("lib")
+    config.i18n.default_locale = :ja
+    config.autoload_paths + [Rails.root.join("lib"), Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
   end
 end
