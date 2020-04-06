@@ -5,23 +5,19 @@ h1 法案一覧
 table
   thead
     tr
+      th Submitted Session
+      th Bill number
       th Title
       th Proposer
-      th Session number
-      th Bill number
-      th Proposal
-      th Outline
       th Status
       th
 
   tbody
     - @bills.each do |bill|
       tr
+        td = bill.submitted_session_number
+        td = bill.bill_number
         td = bill.title
         td = bill.proposer
-        td = bill.session_number
-        td = bill.bill_number
-        td = bill.proposal
-        td = bill.outline
         td = bill.status
         td = link_to 'Show', bill
