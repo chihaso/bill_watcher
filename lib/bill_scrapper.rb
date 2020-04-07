@@ -32,7 +32,7 @@ class BillScrapper
     def bills_in_page(page, bill_type)
       page
         .scan(%r{#{bill_type}の一覧</caption>.*?</table>}m)
-        .to_s
+        .join
         .scan(%r{<tr.*?</tr>}m)
         .tap(&:shift)
     end
