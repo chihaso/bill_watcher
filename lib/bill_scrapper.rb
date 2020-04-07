@@ -3,12 +3,14 @@
 require "open-uri"
 
 class BillScrapper
-  LATEST_BILLS_URI = "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/menu.htm"
+  BILLS_URI_PREFIX ="http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/"
+  LATEST_BILLS_URI = BILLS_URI_PREFIX + "menu.htm"
   PROPOSERS = {
                 representatives: { name: "衆議院", id: "05" },
                 counsillors: { name: "参議院", id: "06" },
                 ministry: { name: "内閣", id: "09" }
               }
+
   class << self
     def latest_discussed_bills
       bill_types = ["衆法", "参法", "閣法"]
@@ -71,11 +73,15 @@ class BillScrapper
     end
 
     def proposal_url(submitted_session_number, proposer_id, bill_number)
-      "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g#{align_to_3_digits(submitted_session_number) + proposer_id + align_to_3_digits(bill_number)}.htm"
+      BILLS_URI_PREFIX + "honbun/houan/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
     end
 
     def outline_url(submitted_session_number, proposer_id, bill_number)
-      "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/youkou/g#{align_to_3_digits(submitted_session_number) + proposer_id + align_to_3_digits(bill_number)}.htm"
+      BILLS_URI_PREFIX + "youkou/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
+    end
+
+    def bill_page_number(submitted_session_number, proposer_id, bill_number)
+      align_to_3_digits(submitted_session_number) + proposer_id + align_to_3_digits(bill_number)
     end
 
     def align_to_3_digits(number)
