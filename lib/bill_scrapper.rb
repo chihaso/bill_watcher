@@ -53,17 +53,18 @@ class BillScrapper
     end
 
     def parse_bills(bills, proposer, table)
-      table.each do |line|
-        fields = line.scan(%r{<td.*?</td>}m)
+      table.each do |row|
+        fields = row.scan(%r{<td.*?</td>}m)
+        contents = fields.map { content_in_cell(_1) }
         bills <<  {
-                    submitted_session_number: content_in_cell(fields[0]),
-                    bill_number:              content_in_cell(fields[1]),
-                    title:                    content_in_cell(fields[2]),
+                    submitted_session_number: contents[0],
+                    bill_number:              contents[1],
+                    title:                    contents[2],
                     proposer:                 proposer[:name],
                     discussed_session_number: latest_session_number,
-                    proposal:                 proposal_url(content_in_cell(fields[0]), proposer[:id], content_in_cell(fields[1])),
-                    outline:                  outline_url(content_in_cell(fields[0]), proposer[:id], content_in_cell(fields[1])),
-                    status:                   content_in_cell(fields[3])
+                    proposal:                 proposal_url(contents[0], proposer[:id], contents[1]),
+                    outline:                  outline_url(contents[0], proposer[:id], contents[1]),
+                    status:                   contents[3]
                   }
       end
     end
