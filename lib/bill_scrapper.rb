@@ -79,7 +79,7 @@ class BillScrapper
     end
 
     def align_to_3_digits(number)
-      "%03d" % number
+      number.rjust(3, "0")
     end
   end
 end
