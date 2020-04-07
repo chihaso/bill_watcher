@@ -24,7 +24,7 @@ class BillScrapper
     end
 
     def latest_session_number
-      @latest_session_number = latest_bills_page.match(%r{<H2.*?(\d{1,3}).*?</H2>}).captures[0]
+      latest_bills_page.match(%r{<H2.*?(\d{1,3}).*?</H2>}).captures[0]
     end
 
     def bills_in_page(page, bill_type)
