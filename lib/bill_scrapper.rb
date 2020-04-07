@@ -6,21 +6,17 @@ class BillScrapper
   BILLS_URI_PREFIX ="http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/"
   LATEST_BILLS_URI = BILLS_URI_PREFIX + "menu.htm"
   PROPOSERS = {
-                representatives: { name: "衆議院", id: "05" },
-                counsillors: { name: "参議院", id: "06" },
-                ministry: { name: "内閣", id: "09" }
+                representatives: { name: "衆議院", id: "05", type: "衆法" },
+                counsillors: { name: "参議院", id: "06", type: "参法" },
+                ministry: { name: "内閣", id: "09", type: "閣法" }
               }
 
   class << self
     def latest_discussed_bills
-      bill_types = ["衆法", "参法", "閣法"]
-      bills = []
-      bill_types.each do |bill_type|
-        proposer = selected_proposer(bill_type)
-        bills_table = bills_in_page(latest_bills_page, bill_type)
-        parse_bills(bills, proposer, bills_table)
+      PROPOSERS.flat_map do |key, proposer|
+        bills_table = bills_in_page(latest_bills_page, proposer[:type])
+        parse_bills(proposer, bills_table)
       end
-      bills
     end
 
     def latest_bills_page
@@ -39,33 +35,20 @@ class BillScrapper
         .tap(&:shift)
     end
 
-    def selected_proposer(bill_type)
-      case bill_type
-      when "衆法"
-        PROPOSERS[:representatives]
-      when "参法"
-        PROPOSERS[:counsillors]
-      when "閣法"
-        PROPOSERS[:ministry]
-      else
-        nil
-      end
-    end
-
-    def parse_bills(bills, proposer, table)
-      table.each do |row|
+    def parse_bills(proposer, table)
+      table.map do |row|
         fields = row.scan(%r{<td.*?</td>}m)
         contents = fields.map { content_in_cell(_1) }
-        bills <<  {
-                    submitted_session_number: contents[0],
-                    bill_number:              contents[1],
-                    title:                    contents[2],
-                    proposer:                 proposer[:name],
-                    discussed_session_number: latest_session_number,
-                    proposal:                 proposal_url(contents[0], proposer[:id], contents[1]),
-                    outline:                  outline_url(contents[0], proposer[:id], contents[1]),
-                    status:                   contents[3]
-                  }
+        {
+          submitted_session_number: contents[0],
+          bill_number:              contents[1],
+          title:                    contents[2],
+          proposer:                 proposer[:name],
+          discussed_session_number: latest_session_number,
+          proposal:                 proposal_url(contents[0], proposer[:id], contents[1]),
+          outline:                  outline_url(contents[0], proposer[:id], contents[1]),
+          status:                   contents[3]
+        }
       end
     end
 
