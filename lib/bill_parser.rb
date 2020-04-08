@@ -13,13 +13,13 @@ class BillParser
 
   def bills
     PROPOSERS.flat_map do |key, proposer|
-      rows = bill_rows(proposer[:type])
-      bill_info(rows, proposer[:name], proposer[:id])
+      rows = table_rows_without_header(proposer[:type])
+      build_bills(rows, proposer[:name], proposer[:id])
     end
   end
 
   private
-    def bill_rows(bill_type)
+    def table_rows_without_header(bill_type)
       table = extract_table(@page, bill_type)
       rows = extract_rows(table)
       delete_header(rows)
@@ -37,28 +37,35 @@ class BillParser
       rows.tap(&:shift)
     end
 
-    def bill_info(rows, proposer_name, proposer_id)
+    def build_bills(rows, proposer_name, proposer_id)
       rows.map do |row|
-        fields = row.scan(%r{<td.*?</td>}m)
-        contents = fields.map { content_in_cell(_1) }
-        {
-          submitted_session_number: contents[0],
-          bill_number:              contents[1],
-          title:                    contents[2],
-          proposer:                 proposer_name,
-          discussed_session_number: latest_session_number,
-          proposal:                 BillUri.proposal_url(contents[0], proposer_id, contents[1]),
-          outline:                  BillUri.outline_url(contents[0], proposer_id, contents[1]),
-          status:                   contents[3]
-        }
+        contents = extract_fields(row).map { content_in_field(_1) }
+        bill_info_from(contents, proposer_name, proposer_id)
       end
+    end
+
+    def bill_info_from(contents, proposer_name, proposer_id)
+      {
+        submitted_session_number: contents[0],
+        bill_number:              contents[1],
+        title:                    contents[2],
+        proposer:                 proposer_name,
+        discussed_session_number: latest_session_number,
+        proposal:                 BillUri.proposal_url(contents[0], proposer_id, contents[1]),
+        outline:                  BillUri.outline_url(contents[0], proposer_id, contents[1]),
+        status:                   contents[3]
+      }
+    end
+
+    def extract_fields(row)
+      row.scan(%r{<td.*?</td>}m)
     end
 
     def latest_session_number
       @page.match(%r{<H2.*?(\d{1,3}).*?</H2>}).captures[0]
     end
 
-    def content_in_cell(cell)
-      cell.match(%r{<span.*?>(.*?)</span>}).captures[0]
+    def content_in_field(field)
+      field.match(%r{<span.*?>(.*?)</span>}).captures[0]
     end
 end
