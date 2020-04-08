@@ -12,16 +12,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_014417) do
+ActiveRecord::Schema.define(version: 2020_04_06_052758) do
   create_table "bills", force: :cascade do |t|
     t.string "title"
     t.string "proposer"
-    t.integer "session_number"
+    t.integer "submitted_session_number"
     t.integer "bill_number"
     t.text "proposal"
     t.text "outline"
     t.text "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "discussed_session_number"
   end
 end
