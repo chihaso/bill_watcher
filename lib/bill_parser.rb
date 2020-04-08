@@ -13,22 +13,32 @@ class BillParser
 
   def bills
     PROPOSERS.flat_map do |key, proposer|
-      table = bills_table(proposer[:type])
-      bill_info(table, proposer[:name], proposer[:id])
+      rows = bill_rows(proposer[:type])
+      bill_info(rows, proposer[:name], proposer[:id])
     end
   end
 
   private
-    def bills_table(bill_type)
-      @page
-        .scan(%r{#{bill_type}の一覧</caption>.*?</table>}m)
-        .join
-        .scan(%r{<tr.*?</tr>}m)
-        .tap(&:shift)
+    def bill_rows(bill_type)
+      table = extract_table(@page, bill_type)
+      rows = extract_rows(table)
+      delete_header(rows)
     end
 
-    def bill_info(table, proposer_name, proposer_id)
-      table.map do |row|
+    def extract_table(page, bill_type)
+      page.scan(%r{#{bill_type}の一覧</caption>.*?</table>}m).join
+    end
+
+    def extract_rows(table)
+      table.scan(%r{<tr.*?</tr>}m)
+    end
+
+    def delete_header(rows)
+      rows.tap(&:shift)
+    end
+
+    def bill_info(rows, proposer_name, proposer_id)
+      rows.map do |row|
         fields = row.scan(%r{<td.*?</td>}m)
         contents = fields.map { content_in_cell(_1) }
         {
