@@ -10,7 +10,7 @@ class BillScrapper
 
     private
       def latest_bills_page
-        @latest_bills_page ||= URI.open(BillUris::LATEST_BILLS_URI).read
+        @latest_bills_page ||= URI.open(BillUri::LATEST_BILLS_URI).read
       end
   end
 end

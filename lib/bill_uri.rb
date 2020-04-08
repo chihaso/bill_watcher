@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BillUris
+class BillUri
   LATEST_BILLS_URI = "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/menu.htm"
   BILLS_URI_PREFIX = "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/"
 
