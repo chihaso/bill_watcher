@@ -12,7 +12,7 @@ class BillParser
     @page = page
   end
 
-  def parse_bills
+  def bills
     PROPOSERS.flat_map do |key, proposer|
       table = bills_table(proposer[:type])
       bill_info(table, proposer)

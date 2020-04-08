@@ -7,7 +7,7 @@ class BillScrapper
 
   class << self
     def latest_discussed_bills
-      BillParser.new(latest_bills_page).parse_bills
+      BillParser.new(latest_bills_page).bills
     end
 
     private
