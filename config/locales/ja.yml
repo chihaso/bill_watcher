@@ -1,0 +1,20 @@
+ja:
+  bills:
+    index:
+      title: "法案一覧"
+      submitted_session: "提出会期"
+      bill_number: "議案番号"
+      bill_title: "法案名"
+      proposer: "提案元"
+      status: "審議状況"
+      show: "詳細"
+    show:
+      bill_title: "法案名"
+      proposer: "提案元"
+      submitted_session: "提出会期"
+      discussed_session: "提出会期"
+      bill_number: "議案番号"
+      proposal: "提出時法律案"
+      outline: "要綱"
+      status: "審議状況"
+      back: "一覧に戻る"

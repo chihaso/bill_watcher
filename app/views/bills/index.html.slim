@@ -1,15 +1,15 @@
 p#notice = notice
 
-h1 法案一覧
+h1 = t ".title"
 
 table
   thead
     tr
-      th Submitted Session
-      th Bill number
-      th Title
-      th Proposer
-      th Status
+      th = t ".submitted_session"
+      th = t ".bill_number"
+      th = t ".bill_title"
+      th = t ".proposer"
+      th = t ".status"
       th
 
   tbody
@@ -20,4 +20,4 @@ table
         td = bill.title
         td = bill.proposer
         td = bill.status
-        td = link_to 'Show', bill
+        td = link_to t(".show"), bill
