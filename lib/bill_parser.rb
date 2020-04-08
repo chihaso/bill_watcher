@@ -15,7 +15,7 @@ class BillParser
   def bills
     PROPOSERS.flat_map do |key, proposer|
       table = bills_table(proposer[:type])
-      bill_info(table, proposer)
+      bill_info(table, proposer[:name], proposer[:id])
     end
   end
 
@@ -28,7 +28,7 @@ class BillParser
         .tap(&:shift)
     end
 
-    def bill_info(table, proposer)
+    def bill_info(table, proposer_name, proposer_id)
       table.map do |row|
         fields = row.scan(%r{<td.*?</td>}m)
         contents = fields.map { content_in_cell(_1) }
@@ -36,10 +36,10 @@ class BillParser
           submitted_session_number: contents[0],
           bill_number:              contents[1],
           title:                    contents[2],
-          proposer:                 proposer[:name],
+          proposer:                 proposer_name,
           discussed_session_number: latest_session_number,
-          proposal:                 proposal_url(contents[0], proposer[:id], contents[1]),
-          outline:                  outline_url(contents[0], proposer[:id], contents[1]),
+          proposal:                 proposal_url(contents[0], proposer_id, contents[1]),
+          outline:                  outline_url(contents[0], proposer_id, contents[1]),
           status:                   contents[3]
         }
       end
