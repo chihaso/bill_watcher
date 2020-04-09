@@ -7,7 +7,7 @@ class BillsTest < ApplicationSystemTestCase
     @bill = bills(:one)
   end
 
-  test "visiting the index" do
+  test "法案一覧ページを表示できる" do
     visit bills_url
     assert_selector "h1", text: I18n.t("bills.index.title")
   end
