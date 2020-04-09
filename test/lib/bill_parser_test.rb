@@ -4,7 +4,7 @@ require "test_helper"
 require "supports/latest_discussed_bills_page.rb"
 
 class BillParserTest < ActiveSupport::TestCase
-  def test_衆議院サイトの議案一覧ページが入力されるとそこから法案を抽出してハッシュの配列として返す
+  test "衆議院サイトの議案一覧ページが入力されるとそこから法案を抽出してハッシュの配列として返す" do
     first_bill = {
       submitted_session_number: "195",
       bill_number: "4",
