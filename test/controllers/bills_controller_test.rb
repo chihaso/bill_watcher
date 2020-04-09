@@ -7,12 +7,12 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
     @bill = bills(:one)
   end
 
-  test "should get index" do
+  test "indexアクションを実行できる" do
     get bills_url
     assert_response :success
   end
 
-  test "should show bill" do
+  test "showアクションを実行できる" do
     get bill_url(@bill)
     assert_response :success
   end
