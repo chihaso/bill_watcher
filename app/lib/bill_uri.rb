@@ -5,6 +5,10 @@ class BillUri
   BILLS_URI_PREFIX = "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/"
 
   class << self
+    def old_session_urls(numbers)
+      numbers.map { BILLS_URI_PREFIX + "kaiji#{_1}.htm" }
+    end
+
     def proposal_url(submitted_session_number, proposer_id, bill_number)
       BILLS_URI_PREFIX + "honbun/houan/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
     end
