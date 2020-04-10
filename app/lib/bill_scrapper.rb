@@ -9,18 +9,18 @@ class BillScrapper
     end
 
     private
-      def latest_bills_page
+      def latest_bill_page
         @latest_bills_page ||= open_as_SJIS(BillUri::LATEST_BILLS_URI).read
       end
 
-      def old_bills_pages
+      def old_bill_pages
         @old_bills_pages ||=
           BillUri.old_session_urls(extract_session_numbers).map do
             open_as_SJIS(_1).read
           end
       end
 
-      def open_as_SJIS(uri)
+      def open_as_sjis(uri)
         URI.open(uri).set_encoding("Shift_JIS", "Shift_JIS")
       end
 
