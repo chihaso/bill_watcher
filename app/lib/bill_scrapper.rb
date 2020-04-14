@@ -21,7 +21,11 @@ class BillScrapper
       end
 
       def extract_session_numbers
-        latest_bill_page.scan(%r{<OPTION>.*?回}m).map{ _1.match(%r{\d{3}}m).to_s }
+        session_selectbox.scan(%r{第(\d{3})回}m).flatten
+      end
+
+      def session_selectbox
+        latest_bill_page.match(%r{<SELECT NAME="kaiji".*?</SELECT>}m).to_s
       end
   end
 end
