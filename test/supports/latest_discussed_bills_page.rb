@@ -12,7 +12,7 @@ PAGE = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 <LINK rel="stylesheet" type="text/css" href="/domino/html/headerandfooter.css">
 <LINK rel="stylesheet" type="text/css" href="/domino/html/medium.css">
 <LINK rel="stylesheet" type="text/css" href="/domino/html/csvcommon.css">
-<script type="text/javascript" charset="UTF-8" src="/domino/html/sug.js#sv=http://ss.marsfinder.jp/shugiin__ja__ja"> </script> 
+<script type="text/javascript" charset="UTF-8" src="/domino/html/sug.js#sv=http://ss.marsfinder.jp/shugiin__ja__ja"> </script>
 <script type="text/javascript" charset="UTF-8" src="/domino/html/muv.js#sv=http://ss.marsfinder.jp/shugiin__ja__ja"> </script>
 <script type="text/javascript" src="/domino/html/sprs.js"></script>
 <script type="text/javascript"><!--
