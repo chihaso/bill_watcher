@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.7.0-node-browsers
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            gem install bundler:1.17.2
+            bundle check --path=vendor/bundle || bundle install -j4 --path=vendor/bundle --clean
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
+      # - run:
+      #     name: rub slim-lint
+      #     command: bundle exec slim-lint app/views
+
+      # - run:
+      #     name: run scss-lint
+      #     command: bundle exec scss-lint .
