@@ -21,7 +21,7 @@ class BillScrapper
       end
 
       def extract_session_numbers
-        session_selectbox.scan(/第(\d{3})回/m).flatten
+        session_selectbox.scan(/第(\d{3})回/).flatten
       end
 
       def session_selectbox
