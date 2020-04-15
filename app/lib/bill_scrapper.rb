@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "open-uri"
+require "my_dictionary.rb"
 
 class BillScrapper
   class << self
@@ -10,14 +11,11 @@ class BillScrapper
 
     private
       def latest_bill_page
-        @latest_bill_page ||= URI.open(BillUri::LATEST_BILLS_URI).read
+        @latest_bill_pagez ||= safe_read(BillUri::LATEST_BILLS_URI)
       end
 
       def old_bill_pages
-        @old_bill_pages ||=
-          BillUri.old_session_urls(extract_session_numbers).map do
-            URI.open(_1).read
-          end
+        @old_bill_pages ||= BillUri.old_session_urls(extract_session_numbers).map { safe_read(_1) }
       end
 
       def extract_session_numbers
@@ -26,6 +24,49 @@ class BillScrapper
 
       def session_selectbox
         latest_bill_page.slice(%r{<SELECT NAME="kaiji".*?</SELECT>}m)
+      end
+
+      def safe_read(uri)
+        encoded_text = ""
+        unencoded_text = URI.open(uri, "r:binary").read
+        convert_undef_chars(encoded_text, unencoded_text)
+      end
+
+      def convert_undef_chars(encoded_text, unencoded_text)
+        encoded_text += as_utf8(unencoded_text)
+        rescue Encoding::UndefinedConversionError
+          undef_char = binary_error_char($!)
+          if converted_char = consult_dictionary(undef_char)
+            encoded_text += as_utf8(match_error_char(unencoded_text, undef_char).pre_match) + converted_char
+            unencoded_text = match_error_char(unencoded_text, binary_error_char($!)).post_match
+            retry
+          end
+      end
+
+      def consult_dictionary(char)
+        if dictionary.keys.include? char
+          dictionary[char]
+        end
+      end
+
+      def dictionary
+        MyDictionary::INCOMPATIBLE_CHARS
+      end
+
+      def match_error_char(text, binary_error_char)
+        text.match(Regexp.compile(binary_error_char + "\\", nil, "n"))
+      end
+
+      def binary_error_char(error)
+        as_binary(error.error_char)
+      end
+
+      def as_binary(text)
+        text.encode("binary", "binary")
+      end
+
+      def as_utf8(text)
+        text.encode("UTF-8", "Shift_JIS")
       end
   end
 end
