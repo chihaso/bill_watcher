@@ -11,11 +11,11 @@ class BillScrapper
 
     private
       def latest_bill_page
-        @latest_bill_page ||= safe_read(BillUri::LATEST_BILLS_URI)
+        @latest_bill_page ||= read_as_utf8(BillUri::LATEST_BILLS_URI)
       end
 
       def old_bill_pages
-        @old_bill_pages ||= BillUri.old_session_urls(extract_session_numbers).map { safe_read(_1) }
+        @old_bill_pages ||= BillUri.old_session_urls(extract_session_numbers).map { read_as_utf8(_1) }
       end
 
       def extract_session_numbers
@@ -26,7 +26,7 @@ class BillScrapper
         latest_bill_page.slice(%r{<SELECT NAME="kaiji".*?</SELECT>}m)
       end
 
-      def safe_read(uri)
+      def read_as_utf8(uri)
         unencoded_text = URI.open(uri, "r:binary").read
         convert_undef_chars(unencoded_text)
       end
