@@ -34,11 +34,11 @@ class BillScrapper
 
       def convert_undef_chars(encoded_text, unencoded_text)
         encoded_text += as_utf8(unencoded_text)
-        rescue Encoding::UndefinedConversionError
-          undef_char = binary_error_char($!)
+        rescue Encoding::UndefinedConversionError => e
+          undef_char = binary_error_char(e)
           if converted_char = consult_dictionary(undef_char)
             encoded_text += as_utf8(match_error_char(unencoded_text, undef_char).pre_match) + converted_char
-            unencoded_text = match_error_char(unencoded_text, binary_error_char($!)).post_match
+            unencoded_text = match_error_char(unencoded_text, binary_error_char(e)).post_match
             retry
           end
       end
