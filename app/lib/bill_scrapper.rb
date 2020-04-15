@@ -36,18 +36,12 @@ class BillScrapper
         begin
           encoded_text += as_utf8(unencoded_text)
         rescue Encoding::UndefinedConversionError => e
-          undef_char = binary_error_char(e)
-          if converted_char = consult_dictionary(undef_char)
+          undef_char = as_binary(e.error_char)
+          if converted_char = dictionary[undef_char]
             encoded_text += as_utf8(match_error_char(unencoded_text, undef_char).pre_match) + converted_char
-            unencoded_text = match_error_char(unencoded_text, binary_error_char(e)).post_match
+            unencoded_text = match_error_char(unencoded_text, as_binary(e.error_char)).post_match
             retry
           end
-        end
-      end
-
-      def consult_dictionary(char)
-        if dictionary.keys.include? char
-          dictionary[char]
         end
       end
 
@@ -57,10 +51,6 @@ class BillScrapper
 
       def match_error_char(text, binary_error_char)
         text.match(Regexp.compile(binary_error_char + "\\", nil, "n"))
-      end
-
-      def binary_error_char(error)
-        as_binary(error.error_char)
       end
 
       def as_binary(text)
