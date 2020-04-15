@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "open-uri"
-require "my_dictionary.rb"
+require "my_dictionary"
 
 class BillScrapper
   class << self
@@ -11,7 +11,7 @@ class BillScrapper
 
     private
       def latest_bill_page
-        @latest_bill_pagez ||= safe_read(BillUri::LATEST_BILLS_URI)
+        @latest_bill_page ||= safe_read(BillUri::LATEST_BILLS_URI)
       end
 
       def old_bill_pages
