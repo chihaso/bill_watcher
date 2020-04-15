@@ -25,7 +25,7 @@ class BillScrapper
       end
 
       def session_selectbox
-        latest_bill_page.match(%r{<SELECT NAME="kaiji".*?</SELECT>}m).to_s
+        latest_bill_page.slice(%r{<SELECT NAME="kaiji".*?</SELECT>}m)
       end
   end
 end
