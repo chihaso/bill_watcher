@@ -27,13 +27,14 @@ class BillScrapper
       end
 
       def safe_read(uri)
-        encoded_text = ""
         unencoded_text = URI.open(uri, "r:binary").read
-        convert_undef_chars(encoded_text, unencoded_text)
+        convert_undef_chars(unencoded_text)
       end
 
-      def convert_undef_chars(encoded_text, unencoded_text)
-        encoded_text += as_utf8(unencoded_text)
+      def convert_undef_chars(unencoded_text)
+        encoded_text = ""
+        begin
+          encoded_text += as_utf8(unencoded_text)
         rescue Encoding::UndefinedConversionError => e
           undef_char = binary_error_char(e)
           if converted_char = consult_dictionary(undef_char)
@@ -41,6 +42,7 @@ class BillScrapper
             unencoded_text = match_error_char(unencoded_text, binary_error_char(e)).post_match
             retry
           end
+        end
       end
 
       def consult_dictionary(char)
