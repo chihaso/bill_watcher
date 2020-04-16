@@ -10,13 +10,13 @@ class BillScrapper
 
     private
       def latest_bill_page
-        @latest_bill_page ||= URI.open(BillUri::LATEST_BILLS_URI).read
+        @latest_bill_page ||= URI.open(BillUri::LATEST_BILLS_URI, "r:CP932").read
       end
 
       def old_bill_pages
         @old_bill_pages ||=
           BillUri.old_session_urls(extract_session_numbers).map do
-            URI.open(_1).read
+            URI.open(_1, "r:CP932").read
           end
       end
 
