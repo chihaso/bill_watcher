@@ -5,6 +5,8 @@ require "my_dictionary"
 
 class BillScrapper
   class << self
+    LOG_FILE = "log/char_convert.log"
+
     def latest_discussed_bills
       BillParser.bills(latest_bill_page)
     end
@@ -36,13 +38,22 @@ class BillScrapper
         begin
           encoded_text += as_utf8(unencoded_text)
         rescue Encoding::UndefinedConversionError => e
+          output_log(e.inspect)
           undef_char = as_binary(e.error_char)
           if converted_char = dictionary[undef_char]
             encoded_text += as_utf8(match_error_char(unencoded_text, undef_char).pre_match) + converted_char
             unencoded_text = match_error_char(unencoded_text, as_binary(e.error_char)).post_match
+            output_log("置換後の文字 -> " + converted_char)
             retry
+          else
+            output_log("置換できる文字が見つかりませんでした")
+            raise e
           end
         end
+      end
+
+      def output_log(object)
+        Logger.new(LOG_FILE).debug(object)
       end
 
       def dictionary
