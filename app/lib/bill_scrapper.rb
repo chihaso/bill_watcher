@@ -5,11 +5,11 @@ require "open-uri"
 class BillScrapper
   class << self
     def latest_bills
-      BillParser.latest_bills(latest_bill_page)
+      BillParser.bills(latest_bill_page)
     end
 
     def old_bills
-      BillParser.old_bills(old_bill_pages)
+      old_bill_pages.flat_map { BillParser.bills(_1) }
     end
 
     private

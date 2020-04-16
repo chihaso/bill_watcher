@@ -8,19 +8,10 @@ class BillParser
   }
 
   class << self
-    def latest_bills(page)
+    def bills(page)
       PROPOSERS.flat_map do |key, proposer|
         rows = table_rows_without_header(page, proposer[:type])
         build_bills(rows, proposer[:name], proposer[:id], current_session_number(page))
-      end
-    end
-
-    def old_bills(pages)
-      pages.flat_map do |page|
-        PROPOSERS.flat_map do |key, proposer|
-          rows = table_rows_without_header(page, proposer[:type])
-          build_bills(rows, proposer[:name], proposer[:id], current_session_number(page))
-        end
       end
     end
 
