@@ -15,7 +15,7 @@ class BillScrapper
 
       def old_bill_pages
         @old_bill_pages ||=
-          BillUri.old_session_urls(extract_session_numbers).map{ read_as_cp932(_1) }
+          BillUri.old_session_urls(extract_session_numbers).map { read_as_cp932(_1) }
       end
 
       def read_as_cp932(uri)
