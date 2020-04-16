@@ -25,7 +25,7 @@ class BillParserTest < ActiveSupport::TestCase
       outline: "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/youkou/g20109053.htm",
       status: "衆議院で審議中"
     }
-    bills = BillParser.bills(PAGE)
+    bills = BillParser.latest_bills(PAGE)
     assert_equal first_bill, bills.first
     assert_equal last_bill, bills.last
   end

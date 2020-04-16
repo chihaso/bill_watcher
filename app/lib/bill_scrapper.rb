@@ -4,8 +4,12 @@ require "open-uri"
 
 class BillScrapper
   class << self
-    def latest_discussed_bills
-      BillParser.bills(latest_bill_page)
+    def latest_bills
+      BillParser.latest_bills(latest_bill_page)
+    end
+
+    def old_bills
+      BillParser.old_bills(old_bill_pages)
     end
 
     private
@@ -23,7 +27,7 @@ class BillScrapper
       end
 
       def extract_session_numbers
-        session_selectbox.scan(/第(\d{3})回/).flatten
+        session_selectbox.scan(/第(\d{3})回/).flatten.drop(1).reverse
       end
 
       def session_selectbox
