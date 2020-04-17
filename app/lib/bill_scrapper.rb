@@ -4,7 +4,7 @@ require "open-uri"
 
 class BillScrapper
   class << self
-    def all_bills
+    def all
       all_bill_pages.flat_map { BillParser.bills(_1) }
     end
 

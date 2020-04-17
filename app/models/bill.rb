@@ -3,7 +3,7 @@
 class Bill < ApplicationRecord
   class << self
     def update_bills
-      BillScrapper.all_bills.each do |bill|
+      BillScrapper.all.each do |bill|
         Bill.find_or_initialize_by(existing_check_hash(bill)).update(bill)
       end
     end
