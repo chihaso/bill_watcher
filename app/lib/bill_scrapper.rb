@@ -19,6 +19,7 @@ class BillScrapper
       end
 
       def read_as_cp932(uri)
+        sleep 1
         URI.open(uri, "r:CP932").read
       end
 
