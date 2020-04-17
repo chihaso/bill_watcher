@@ -2,16 +2,8 @@
 
 class Bill < ApplicationRecord
   class << self
-    def save_latest_bills
-      BillScrapper.latest_bills.map { Bill.new(_1) }.each(&:save)
-    end
-
-    def save_old_bills
-      BillScrapper.old_bills.map { Bill.new(_1) }.each(&:save)
-    end
-
-    def update_latest_bills
-      BillScrapper.latest_bills.each do |bill|
+    def update_bills
+      BillScrapper.all_bills.each do |bill|
         if existing_bill = existing(bill)
           existing_bill.update(bill)
         else
