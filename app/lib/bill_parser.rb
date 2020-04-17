@@ -11,7 +11,7 @@ class BillParser
     def bills(page)
       PROPOSERS.flat_map do |key, proposer|
         rows = table_rows_without_header(page, proposer[:type])
-        build_bills(rows, proposer[:name], proposer[:id], latest_session_number(page))
+        build_bills(rows, proposer[:name], proposer[:id], current_session_number(page))
       end
     end
 
@@ -34,20 +34,20 @@ class BillParser
         rows.tap(&:shift)
       end
 
-      def build_bills(rows, proposer_name, proposer_id, latest_session_number)
+      def build_bills(rows, proposer_name, proposer_id, current_session_number)
         rows.map do |row|
           contents = extract_fields(row).map { content_in_field(_1) }
-          bill_info_from(contents, proposer_name, proposer_id, latest_session_number)
+          bill_info_from(contents, proposer_name, proposer_id, current_session_number)
         end
       end
 
-      def bill_info_from(contents, proposer_name, proposer_id, latest_session_number)
+      def bill_info_from(contents, proposer_name, proposer_id, current_session_number)
         {
           submitted_session_number: contents[0],
           bill_number:              contents[1],
           title:                    contents[2],
           proposer:                 proposer_name,
-          discussed_session_number: latest_session_number,
+          discussed_session_number: current_session_number,
           proposal:                 BillUri.proposal_url(contents[0], proposer_id, contents[1]),
           outline:                  BillUri.outline_url(contents[0], proposer_id, contents[1]),
           status:                   contents[3]
@@ -58,7 +58,7 @@ class BillParser
         row.scan(%r{<td.*?</td>}m)
       end
 
-      def latest_session_number(page)
+      def current_session_number(page)
         page.match(%r{<H2.*?(\d{1,3}).*?</H2>}).captures[0]
       end
 
