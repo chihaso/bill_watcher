@@ -1,11 +1,20 @@
 # frozen_string_literal: true
 
 class Bill < ApplicationRecord
-  def self.save_latest_bills
-    BillScrapper.latest_bills.map { Bill.new(_1) }.each(&:save)
-  end
+  class << self
+    def update_bills
+      BillScrapper.all.each do |bill|
+        Bill.find_or_initialize_by(existing_check_hash(bill)).update(bill)
+      end
+    end
 
-  def self.save_old_bills
-    BillScrapper.old_bills.map { Bill.new(_1) }.each(&:save)
+    private
+      def existing_check_hash(bill)
+        {
+          submitted_session_number: bill[:submitted_session_number],
+          bill_number:              bill[:bill_number],
+          discussed_session_number: bill[:discussed_session_number]
+        }
+      end
   end
 end

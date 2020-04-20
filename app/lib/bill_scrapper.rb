@@ -4,25 +4,22 @@ require "open-uri"
 
 class BillScrapper
   class << self
-    def latest_bills
-      BillParser.bills(latest_bill_page)
-    end
-
-    def old_bills
-      old_bill_pages.flat_map { BillParser.bills(_1) }
+    def all
+      all_bill_pages.flat_map { BillParser.bills(_1) }
     end
 
     private
+      def all_bill_pages
+        @bill_pages ||=
+          BillUri.session_urls(extract_old_session_numbers).map { read_as_cp932(_1) } << latest_bill_page
+      end
+
       def latest_bill_page
         @latest_bill_page ||= read_as_cp932(BillUri::LATEST_BILLS_URI)
       end
 
-      def old_bill_pages
-        @old_bill_pages ||=
-          BillUri.old_session_urls(extract_old_session_numbers).map { read_as_cp932(_1) }
-      end
-
       def read_as_cp932(uri)
+        sleep 1
         URI.open(uri, "r:CP932").read
       end
 
