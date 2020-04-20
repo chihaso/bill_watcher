@@ -32,6 +32,7 @@ gem "bootsnap", ">= 1.4.2", require: false
 
 # not default
 gem "slim-rails", "~> 3.2"
+gem "whenever"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
