@@ -24,6 +24,7 @@ class BillScrapper
       end
 
       def session_numbers_excluding_latest
+        # 最新の議案ページは@latest_bill_pageとして読み出し済みのため、ここでは除外する。
         session_selectbox.scan(/第(\d{3})回/).flatten.drop(1)
       end
 
