@@ -24,7 +24,8 @@ class BillScrapper
       end
 
       def session_numbers_excluding_latest
-        # 最新の議案ページは@latest_bill_pageとして読み出し済みのため、ここでは除外する。
+        # 最新の議案ページは、現在閲覧できる会期番号を取得するため、latest_bill_pageメソッドで最初に読み出している。
+        # 衆議院の公式サイトへのアクセス回数削減のため、ここでは最新会期の番号を除外する。
         session_selectbox.scan(/第(\d{3})回/).flatten.drop(1)
       end
 
