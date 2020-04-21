@@ -11,7 +11,7 @@ class BillScrapper
     private
       def all_bill_pages
         @bill_pages ||=
-          [latest_bill_page, *BillUri.session_urls(session_numbers_excluding_latest).map { read_as_cp932(_1) }].reverse
+          [latest_bill_page, *BillUri.session_urls(session_numbers_excluding_latest).map { read_as_cp932(_1) }]
       end
 
       def latest_bill_page
