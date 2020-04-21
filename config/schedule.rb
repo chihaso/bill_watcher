@@ -5,7 +5,7 @@ require "active_support/core_ext/time"
 set :output, "/Users/chibayuta/dev/myapps/bill_watcher/tmp/bill_update.log"
 set :job_template, nil
 set :environment, "development"
-ENV.each { |key, value| env(key, value) }
+env("PATH", ENV["PATH"])
 
 def jst(time)
   Time.zone = "Asia/Tokyo"
