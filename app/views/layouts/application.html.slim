@@ -11,6 +11,7 @@ html
     header.hero.is-link
       nav.navbar
         .container
-          .navbar-brand.navbar-item
-            = link_to "審議法案ウォッチャー", bills_path, class: "logo"
+          = link_to bills_path do
+            .navbar-brand.navbar-item
+              p.logo = "審議法案ウォッチャー"
     = yield
