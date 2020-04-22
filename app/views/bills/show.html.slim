@@ -1,28 +1,33 @@
 p#notice = notice
 
-p
-  strong = t(".bill_title") + ": "
-  = @bill.title
-p
-  strong = t(".proposer") + ": "
-  = @bill.proposer
-p
-  strong = t(".submitted_session") + ": "
-  = @bill.submitted_session_number
-p
-  strong = t(".discussed_session") + ": "
-  = @bill.discussed_session_number
-p
-  strong = t(".bill_number") + ": "
-  = @bill.bill_number
-p
-  strong = t(".proposal") + ": "
-  = @bill.proposal
-p
-  strong = t(".outline") + ": "
-  = @bill.outline
-p
-  strong = t(".status")+ ": "
-  = @bill.status
+article
+  .container
+    .box.bill
+      table.table
+        tbody
+          tr
+            td = t(".bill_title") + ": "
+            td = @bill.title
+          tr
+            td = t(".proposer") + ": "
+            td = @bill.proposer
+          tr
+            td = t(".submitted_session") + ": "
+            td = @bill.submitted_session_number
+          tr
+            td = t(".discussed_session") + ": "
+            td = @bill.discussed_session_number
+          tr
+            td = t(".bill_number") + ": "
+            td = @bill.bill_number
+          tr
+            td = t(".status") + ": "
+            td = @bill.status
+          tr
+            td = t(".link") + ": "
+            td 
+              = link_to t(".proposal"), @bill.proposal
+              br
+              = link_to t(".outline"), @bill.outline
 
-=< link_to t(".back"), bills_path
+    = link_to t(".back"), bills_path
