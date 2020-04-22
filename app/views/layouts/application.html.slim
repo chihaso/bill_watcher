@@ -8,4 +8,10 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    header.hero.is-link
+      nav.navbar
+        .container
+          = link_to bills_path do
+            .navbar-brand.navbar-item
+              p.logo = "審議法案ウォッチャー"
     = yield
