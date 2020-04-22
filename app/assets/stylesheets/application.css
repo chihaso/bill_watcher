@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.logo {
+  font-weight: bold;
+  color: rgba(255, 255, 255, 1);
+}
+.title, .table {
+  margin-top: 20px
+}

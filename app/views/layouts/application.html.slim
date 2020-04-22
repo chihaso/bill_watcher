@@ -8,4 +8,11 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    header.hero.is-primary
+      nav.navbar
+        .container
+          .navbar-brand
+            .navbar-item
+              p.logo 審議法案ウォッチャー
+          = link_to t("bills.index.title"), bills_path, class: "navbar-item"
     = yield
