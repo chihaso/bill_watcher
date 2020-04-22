@@ -1,24 +1,31 @@
 p#notice = notice
 
-h1 = t ".title"
+.container
+  h.title.is-1
+    = t ".title"
 
-table
-  thead
-    tr
-      th = t ".submitted_session"
-      th = t ".bill_number"
-      th = t ".bill_title"
-      th = t ".proposer"
-      th = t ".status"
-      th
+article
+  .container
+    table.table.is-hoverable.bill-table
+      thead.bill-table__head
+        tr
+          th.bill-table__head__submitted-session
+            = t ".submitted_session"
+          th.bill-table__head__bill-number
+            = t ".bill_number"
+          th.bill-table__head__title
+            = t ".bill_title"
+          th.bill-table__head__status
+            = t ".status"
 
-  tbody
-    - @bills.each do |bill|
-      tr
-        td = bill.submitted_session_number
-        td = bill.bill_number
-        td = bill.title
-        td = bill.proposer
-        td = bill.status
-        td = link_to t(".show"), bill, class: "button is-link" 
-
+      tbody.bill-table__body
+        - @bills.each do |bill|
+          tr
+            td.bill-table__body__session-number
+              = bill.submitted_session_number
+            td.bill-table__body__bill-number
+              = bill.bill_number
+            td.bill-table__body__title
+              = link_to bill.title, bill
+            td.bill-table__body__status
+              = bill.status
