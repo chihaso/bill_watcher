@@ -18,6 +18,9 @@
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
 }
+.logo:hover {
+  color: rgba(255, 255, 255, 1);
+}
 .title, .table {
   margin-top: 20px
 }

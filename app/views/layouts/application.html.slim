@@ -11,8 +11,6 @@ html
     header.hero.is-primary
       nav.navbar
         .container
-          .navbar-brand
-            .navbar-item
-              p.logo 審議法案ウォッチャー
-          = link_to t("bills.index.title"), bills_path, class: "navbar-item"
+          .navbar-brand.navbar-item
+            = link_to "審議法案ウォッチャー", bills_path, class: "logo"
     = yield
