@@ -1,31 +1,31 @@
 p#notice = notice
 
 .container
-  h1 class="title is-1"
+  h.title.is-1
     = t ".title"
 
 article
   .container
-    table class="table is-hoverable bill-table"
-      thead class="bill-table__head"
+    table.table.is-hoverable.bill-table
+      thead.bill-table__head
         tr
-          th class="bill-table__head__submitted-session"
+          th.bill-table__head__submitted-session
             = t ".submitted_session"
-          th class="bill-table__head__bill-number"
+          th.bill-table__head__bill-number
             = t ".bill_number"
-          th class="bill-table__head__title"
+          th.bill-table__head__title
             = t ".bill_title"
-          th class="bill-table__head__status"
+          th.bill-table__head__status
             = t ".status"
 
-      tbody class="bill-table__body"
+      tbody.bill-table__body
         - @bills.each do |bill|
           tr
-            td class="bill-table__body__session-number"
+            td.bill-table__body__session-number
               = bill.submitted_session_number
-            td class="bill-table__body__bill-number"
+            td.bill-table__body__bill-number
               = bill.bill_number
-            td class="bill-table__body__title"
+            td.bill-table__body__title
               = link_to bill.title, bill
-            td class="bill-table__body__status"
+            td.bill-table__body__status
               = bill.status
