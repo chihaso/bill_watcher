@@ -1,3 +1,7 @@
+.container {
+  padding-top: 20px;
+}
+
 .bill-table__head__title, .bill-table__body__title  {
   width: 60%;
 }
