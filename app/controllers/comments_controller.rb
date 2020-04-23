@@ -22,9 +22,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    respond_to do |format|
-      redirect_to bill_path(@comment.bill), notice: t("comment.destroy.success")
-    end
+    redirect_to bill_path(@comment.bill), notice: t("comment.destroy.success")
   end
 
   private
