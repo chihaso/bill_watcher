@@ -8,6 +8,5 @@
   .field
     = f.label I18n.t(".comments.new_comment")
     = f.text_area :description
-    = f.hidden_field :bill_id, value: comment.bill_id
     
   .actions = f.submit
