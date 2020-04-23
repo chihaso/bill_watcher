@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Bill < ApplicationRecord
+  has_many :comments
+
   class << self
     def update_all
       BillScrapper.all.each do |bill|
