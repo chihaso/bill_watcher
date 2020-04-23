@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to bill_path(@comment.bill), notice: t("comment.create.success")
+      redirect_to bill_path(@comment.bill), notice: t(".success")
     else
       render bill_path(@comment.bill)
     end
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to bill_path(@comment.bill), notice: t("comment.update.success")
+      redirect_to bill_path(@comment.bill), notice: t(".success")
     else
       render bill_path(@comment.bill)
     end
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to bill_path(@comment.bill), notice: t("comment.destroy.success")
+    redirect_to bill_path(@comment.bill), notice: t(".success")
   end
 
   private
