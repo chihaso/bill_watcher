@@ -19,3 +19,10 @@ ja:
       status: "審議状況"
       link: "リンク"
       back: "一覧に戻る"
+  comments:
+    create:
+      success: "コメントを投稿しました"
+    update:
+      success: "コメントを修正しました"
+    destroy:
+      success: "コメントを削除しました"
