@@ -37,4 +37,4 @@ article
       = render partial: "comments/comment", collection: @bill.comments.order(:created_at), as: :comment
     - else
       p.no-comment = t ".no_comment"
-    = render partial: "comments/form", object: @bill.comments.new, as: :comment
+    = render partial: "comments/form", locals: { bill: @bill, comment: @bill.comments.new }

@@ -1,4 +1,4 @@
-= form_with(model: comment, local: true, url: bill_comments_path(comment.bill_id)) do |f|
+= form_with(model: [bill, comment], local: true) do |f|
   - if comment.errors.any?
     #error_explanation
       h2 = "#{pluralize(comment.errors.count, "error")} prohibited this comment from being saved:"
