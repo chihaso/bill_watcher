@@ -1,4 +1,18 @@
 ja:
+  activerecord:
+    models:
+      bill: 法案
+      comment: コメント
+    attributes:
+      bill:
+        title: "法案一覧"
+        submitted_session: "提出会期"
+        bill_number: "議案番号"
+        bill_title: "法案名"
+        proposer: "提案元"
+        status: "審議状況"
+      comment:
+        description: コメント文
   bills:
     index:
       title: "法案一覧"
@@ -25,7 +39,6 @@ ja:
     new_comment: "新規コメント"
     submit: "投稿する"
     placeholder: "コメントを記入してください"
-    empty: "空のコメントは投稿できません"
     create:
       success: "コメントを投稿しました"
     update:

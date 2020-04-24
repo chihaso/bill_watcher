@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to bill_path(@comment.bill), notice: t(".success")
     else
-      flash[:alert] = t(".empty") if @comment.description.trim.empty?
+      @comment.errors.full_messages.each { |message| flash[:alert] = message }
       redirect_to bill_path(@comment.bill)
     end
   end
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to bill_path(@comment.bill), notice: t(".success")
     else
-      flash[:alert] = t(".empty") if @comment.description.trim.empty?
+      @comment.errors.full_messages.each { |message| flash[:alert] = message }
       redirect_to bill_path(@comment.bill)
     end
   end
