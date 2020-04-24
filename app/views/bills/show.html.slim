@@ -1,4 +1,4 @@
-p#notice = notice
+p#notice.hero.is-success.has-text-centered = notice
 
 article
   .container
@@ -32,9 +32,11 @@ article
 
     = link_to t(".back"), bills_path
 
-    h2.title.is-2 = t ".comment_title"
-    - if @bill.comments.present?
-      = render partial: "comments/comment", collection: @comments, as: :comment
-    - else
-      p.no-comment = t ".no_comment"
-    = render partial: "comments/form", locals: { bill: @bill, comment: @bill.comments.new }
+    .comments
+      h2.title.is-4 = t ".comment_title"
+      - if @bill.comments.present?
+        = render partial: "comments/comment", collection: @comments, as: :comment
+      - else
+        p.has-text-grey.no-comment = t ".no_comment"
+      .comment-form
+        = render partial: "comments/form", locals: { bill: @bill, comment: @bill.comments.new }

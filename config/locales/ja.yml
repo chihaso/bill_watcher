@@ -24,6 +24,7 @@ ja:
   comments:
     new_comment: "新規コメント"
     submit: "投稿する"
+    placeholder: "コメントを記入してください"
     create:
       success: "コメントを投稿しました"
     update:

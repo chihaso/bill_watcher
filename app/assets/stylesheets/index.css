@@ -4,3 +4,6 @@
 .bill-table { 
   margin-top: 20px;
 }
+#notice {
+  font-weight: bold;
+}
