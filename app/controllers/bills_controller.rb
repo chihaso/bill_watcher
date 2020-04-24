@@ -8,6 +8,7 @@ class BillsController < ApplicationController
   end
 
   def show
+    @comments = @bill.comments.order(:created_at)
   end
 
   private

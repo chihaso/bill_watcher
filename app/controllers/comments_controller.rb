@@ -2,11 +2,12 @@
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
+  before_action :set_bill, only: :create
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @bill.comments.new(comment_params)
     if @comment.save
-      redirect_to bill_path(@comment.bill), notice: t("comment.create.success")
+      redirect_to bill_path(@comment.bill), notice: t(".success")
     else
       render bill_path(@comment.bill)
     end
@@ -14,7 +15,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to bill_path(@comment.bill), notice: t("comment.update.success")
+      redirect_to bill_path(@comment.bill), notice: t(".success")
     else
       render bill_path(@comment.bill)
     end
@@ -22,7 +23,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to bill_path(@comment.bill), notice: t("comment.destroy.success")
+    redirect_to bill_path(@comment.bill), notice: t(".success")
   end
 
   private
@@ -30,7 +31,11 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
 
+    def set_bill
+      @bill = Bill.find(params[:bill_id])
+    end
+
     def comment_params
-      params.require(:comment).permit(:user_id, :bill_id, :description)
+      params.require(:comment).permit(:bill_id, :description)
     end
 end

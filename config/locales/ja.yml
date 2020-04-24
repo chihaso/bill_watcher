@@ -18,8 +18,12 @@ ja:
       outline: "要綱"
       status: "審議状況"
       link: "リンク"
+      comment_title: "コメント"
+      no_comment: "まだコメントがありません"
       back: "一覧に戻る"
   comments:
+    new_comment: "新規コメント"
+    submit: "投稿する"
     create:
       success: "コメントを投稿しました"
     update:
