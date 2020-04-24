@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_004432) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "bill_id"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
