@@ -1,7 +1,10 @@
-.bill{
+.bill, .comments, .comment-form {
   margin-top: 30px
 }
 .bill tr td:nth-child(1) {
   width:140px;
+  font-weight: bold;
+}
+#notice {
   font-weight: bold;
 }

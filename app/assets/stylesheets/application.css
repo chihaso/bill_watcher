@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+article {
+  margin-bottom: 50px;
+}
 .logo {
   font-size: 20px;
   font-weight: bold;

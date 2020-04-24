@@ -6,7 +6,7 @@
         - comment.errors.full_messages.each do |message|
           li = message
   .field
-    = f.label I18n.t(".comments.new_comment")
-    = f.text_area :description
+    = f.label I18n.t(".comments.new_comment"), class: "label"
+    = f.text_area :description, class: "textarea", placeholder:  I18n.t(".comments.placeholder")
     
-  .actions = f.submit
+  .actions = f.submit value: I18n.t(".comments.submit"), class: "button is-link"
