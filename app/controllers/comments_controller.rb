@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to bill_path(@comment.bill), notice: t(".success")
     else
-      render bill_path(@comment.bill)
+      flash[:alert] = @comment.errors.full_messages.join("<br>")
+      redirect_to bill_path(@comment.bill)
     end
   end
 
@@ -17,7 +18,8 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to bill_path(@comment.bill), notice: t(".success")
     else
-      render bill_path(@comment.bill)
+      flash[:alert] = @comment.errors.full_messages.join("<br>")
+      redirect_to bill_path(@comment.bill)
     end
   end
 
