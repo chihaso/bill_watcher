@@ -22,14 +22,18 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test "コメントの更新に成功した場合、法案詳細ページにリダイレクトされる" do
     comment = comments(:one)
     bill = bills(:one)
-    put bill_comment_url(bill, comment), params: { comment: { description: "test" } }
+    assert_changes "Comment.find(comment.id).description" do
+      put bill_comment_url(bill, comment), params: { comment: { description: "test" } }
+    end
     assert_redirected_to bill_url(bill)
   end
 
   test "コメントの更新に失敗した（空のコメントを投稿した場合）場合、法案詳細ページにリダイレクトされる" do
     comment = comments(:one)
     bill = bills(:one)
-    put bill_comment_url(bill, comment), params: { comment: { description: "" } }
+    assert_no_changes "Comment.find(comment.id).description" do
+      put bill_comment_url(bill, comment), params: { comment: { description: "" } }
+    end
     assert_redirected_to bill_url(bill)
   end
 
