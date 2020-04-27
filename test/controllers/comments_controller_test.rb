@@ -3,7 +3,7 @@
 require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  test "createアクションを実行できる" do
+  test "コメントの作成に成功した場合、法案詳細ページにリダイレクトされる" do
     bill = bills(:one)
     assert_difference "Comment.count" do
       post bill_comments_url(bill), params: { comment: { description: "test" } }
@@ -11,14 +11,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to bill
   end
 
-  test "updateアクションを実行できる" do
+  test "コメントの更新に成功した場合、法案詳細ページにリダイレクトされる" do
     comment = comments(:one)
     bill = bills(:one)
     put bill_comment_url(bill, comment), params: { comment: { description: "test" } }
     assert_redirected_to bill
   end
 
-  test "destroyアクションを実行できる" do
+  test "コメントの削除に成功した場合、法案詳細ページにリダイレクトされる" do
     comment = comments(:one)
     bill = bills(:one)
     assert_difference "Comment.count", -1 do
