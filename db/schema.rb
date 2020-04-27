@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_004432) do
+ActiveRecord::Schema.define(version: 2020_04_27_053537) do
   create_table "bills", force: :cascade do |t|
     t.string "title"
     t.string "proposer"
@@ -32,4 +32,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_004432) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
+  add_foreign_key "comments", "bills"
 end
