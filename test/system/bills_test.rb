@@ -10,13 +10,13 @@ class BillsTest < ApplicationSystemTestCase
 
   test "個別の法案ページでコメントが表示される" do
     bill = bills(:one)
-    visit bill_path(bill)
+    visit bill_url(bill)
     assert_text "法案oneへのコメント"
   end
 
   test "個別の法案ページでコメントを追加できる" do
     bill = bills(:one)
-    visit bill_path(bill)
+    visit bill_url(bill)
     fill_in "comment[description]", with: "新しいコメント"
     click_button "commit"
     assert_text "新しいコメント"
