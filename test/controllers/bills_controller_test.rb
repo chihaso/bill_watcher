@@ -9,8 +9,7 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "showアクションを実行できる" do
-    bill = bills(:one)
-    get bill_url(bill)
+    get bill_url(bills(:one))
     assert_response :success
   end
 end

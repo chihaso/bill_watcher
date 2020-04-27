@@ -38,10 +38,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "コメントの削除に成功した場合、法案詳細ページにリダイレクトされる" do
-    comment = comments(:one)
     bill = bills(:one)
     assert_difference "bill.comments.count", -1 do
-      delete bill_comment_url(bill, comment)
+      delete bill_comment_url(bill, comments(:one))
     end
     assert_redirected_to bill_url(bill)
   end

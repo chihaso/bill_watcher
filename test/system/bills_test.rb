@@ -17,8 +17,7 @@ class BillsTest < ApplicationSystemTestCase
   end
 
   test "個別の法案ページでコメントを追加できる" do
-    bill = bills(:one)
-    visit bill_url(bill)
+    visit bill_url(bills(:one))
     fill_in "comment[description]", with: "新しいコメント"
     click_button "commit"
     assert_text "新しいコメント"
