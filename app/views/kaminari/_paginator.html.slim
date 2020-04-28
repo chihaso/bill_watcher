@@ -9,12 +9,12 @@
 == paginator.render do
   nav.pagination
     == prev_page_tag
-    - each_page do |page|
-      - if page.first? || page.last?
-        == page_tag page
-      - elsif page.display_tag?
-        == page_tag page
-      - elsif !page.was_truncated?
-        == gap_tag
     == next_page_tag
+    ul.pagination-list
+      - each_page do |page|
+        - if page.display_tag?
+          == page_tag page
+        - elsif !page.was_truncated?
+          == gap_tag
+
 
