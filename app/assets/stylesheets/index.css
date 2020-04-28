@@ -1,9 +1,12 @@
 .bill-table__head__title, .bill-table__body__title  {
   width: 60%;
 }
-.bill-table { 
+.bill-table {
   margin-top: 20px;
 }
 #notice {
   font-weight: bold;
+}
+.pagination {
+  margin-top: 30px;
 }

@@ -8,12 +8,13 @@
 
 == paginator.render do
   nav.pagination
-    == first_page_tag unless current_page.first?
-    == prev_page_tag unless current_page.first?
+    == prev_page_tag
     - each_page do |page|
-      - if page.display_tag?
+      - if page.first? || page.last?
+        == page_tag page
+      - elsif page.display_tag?
         == page_tag page
       - elsif !page.was_truncated?
         == gap_tag
-    == next_page_tag unless current_page.last?
-    == last_page_tag unless current_page.last?
+    == next_page_tag
+
