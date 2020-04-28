@@ -6,6 +6,7 @@ p#notice.hero.is-success.has-text-centered = notice
 
 article
   .container
+    = paginate @bills
     table.table.is-hoverable.bill-table
       thead.bill-table__head
         tr
@@ -29,3 +30,4 @@ article
               = link_to bill.title, bill
             td.bill-table__body__status
               = bill.status
+    = paginate @bills
