@@ -47,17 +47,6 @@ ja:
       success: "コメントを削除しました"
   views:
     pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "&hellip;"
-  helpers:
-    page_entries_info:
-      one_page:
-        display_entries:
-          zero: "%{entry_name}はありません"
-          one: "<b>1件</b>の%{entry_name}を表示中"
-          other: "<b>全%{count}件</b>の%{entry_name}を表示中"
-      more_pages:
-        display_entries: "<b>全%{total}件</b>中<b>%{first}&nbsp;-&nbsp;%{last}件目</b>の%{entry_name}を表示中"
