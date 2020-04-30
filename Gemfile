@@ -35,6 +35,7 @@ gem "slim-rails", "~> 3.2"
 gem "whenever"
 gem "hurricane_trimar"
 gem "kaminari"
+gem "ransack"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

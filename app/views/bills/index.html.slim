@@ -4,6 +4,29 @@ p#notice.hero.is-success.has-text-centered = notice
   h1.title.is-1
     = t ".title"
 
+.container
+  p = t ".refine_search"
+  = search_form_for @q, class: "refine_search_form" do |f|
+    = f.label :title
+    = f.text_field :title_cont
+    br
+    = f.label :submitted_session_number
+    = f.number_field :submitted_session_number_gteq
+    span = t ".from"
+    = f.number_field :submitted_session_number_lteq
+    span = t ".to"
+    br
+    = f.label :discussed_session_number
+    = f.number_field :discussed_session_number_gteq
+    span = t ".from"
+    = f.number_field :discussed_session_number_lteq
+    span = t ".to"
+    br
+    = f.label :status
+    = f.text_field :status_cont
+    br
+    = f.submit t(".refine"), class: "button"
+
 article
   .container
     = paginate @bills, window: 2, outer_window: 1
@@ -12,6 +35,8 @@ article
         tr
           th.bill-table__head__submitted-session
             = t ".submitted_session"
+          th.bill-table__head__discussed-session
+            = t ".discussed_session"
           th.bill-table__head__bill-number
             = t ".bill_number"
           th.bill-table__head__title
@@ -22,8 +47,10 @@ article
       tbody.bill-table__body
         - @bills.each do |bill|
           tr
-            td.bill-table__body__session-number
+            td.bill-table__body__submitted-session-number
               = bill.submitted_session_number
+            td.bill-table__body__discussed-session-number
+              = bill.discussed_session_number
             td.bill-table__body__bill-number
               = bill.bill_number
             td.bill-table__body__title
