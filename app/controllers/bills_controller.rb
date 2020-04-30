@@ -4,7 +4,8 @@ class BillsController < ApplicationController
   before_action :set_bill, only: [:show]
 
   def index
-    @bills = Bill.order(:id).page(params[:page])
+    @q = Bill.ransack(params[:q])
+    @bills = @q.result.order(:id).page(params[:page])
   end
 
   def show

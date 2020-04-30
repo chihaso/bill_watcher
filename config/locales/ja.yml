@@ -5,18 +5,25 @@ ja:
       comment: コメント
     attributes:
       bill:
-        title: "法案一覧"
-        submitted_session: "提出会期"
+        title: "法案名"
+        submitted_session_number: "提出会期"
+        discussed_session_number: "審議会期"
         bill_number: "議案番号"
-        bill_title: "法案名"
         proposer: "提案元"
         status: "審議状況"
+        proposal: "提出時法案"
+        outline: "要綱"
       comment:
         description: コメント文
   bills:
     index:
       title: "法案一覧"
+      refine_search: "絞り込み検索"
+      from: "回から"
+      to: "回まで"
+      refine: "絞り込む"
       submitted_session: "提出会期"
+      discussed_session: "審議会期"
       bill_number: "議案番号"
       bill_title: "法案名"
       proposer: "提案元"
