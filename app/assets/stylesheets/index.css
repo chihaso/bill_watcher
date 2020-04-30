@@ -1,4 +1,4 @@
-.bill-table__head__title, .bill-table__body__title  {
+.bill-table__head__title, .bill-table__body__title {
   width: 60%;
 }
 .bill-table {
@@ -6,4 +6,15 @@
 }
 #notice {
   font-weight: bold;
+}
+.refine_search {
+  padding: 10px;
+  margin-bottom: 30px;
+  width: 650px
+}
+.refine_search__summary {
+  font-weight: bold;
+}
+.refine_search__form input {
+  font-size: 16px;
 }
