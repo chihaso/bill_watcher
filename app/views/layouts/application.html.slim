@@ -14,4 +14,6 @@ html
           = link_to bills_path do
             .navbar-brand.navbar-item
               p.logo = "審議法案ウォッチャー"
+    p#alert.hero.is-danger.has-text-centered == alert
+    p#notice.hero.is-success.has-text-centered = notice
     = yield
