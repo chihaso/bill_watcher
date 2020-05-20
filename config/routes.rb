@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   root to: "bills#index"
   resources :bills, only: [:index, :show] do
     get "page/:page", action: :index, on: :collection
