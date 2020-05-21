@@ -6,10 +6,12 @@ class BillsController < ApplicationController
   def index
     @q = Bill.ransack(params[:q])
     @bills = @q.result.order(:id).page(params[:page])
+    @user = current_user
   end
 
   def show
     @comments = @bill.comments.order(:created_at)
+    @user = current_user
   end
 
   private
