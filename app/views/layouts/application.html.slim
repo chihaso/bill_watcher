@@ -10,10 +10,29 @@ html
   body
     header.hero.is-link
       nav.navbar
-        .container
-          = link_to bills_path do
-            .navbar-brand.navbar-item
-              p.logo = "審議法案ウォッチャー"
+        .navbar-start
+          .container.navbar-brand
+            .navbar-item
+              = link_to bills_path do
+                p.logo = "審議法案ウォッチャー"
+        .navbar-end
+          .container.navbar-menu
+            - if @user
+              .navbar-item
+                = link_to "#" do
+                  img src=""
+                  span.name = @user.name
+              .navbar-item
+                = link_to destroy_user_session_path, method: :delete  do
+                  button.button.is-light.is-small ログアウト 
+            - else
+              .navbar-item
+                = link_to new_user_session_path do
+                  button.button.is-primary.has-text-grey-dark ログイン
+              .navbar-item
+                = link_to new_user_registration_path do
+                  button.button.is-warning 新規登録
+
     p#alert.hero.is-danger.has-text-centered == alert
     p#notice.hero.is-success.has-text-centered = notice
     = yield
