@@ -58,6 +58,7 @@ group :development do
 
   # not default
   gem "slim_lint"
+  gem "html2slim"
 end
 
 group :test do
