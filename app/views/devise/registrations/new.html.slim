@@ -1,24 +1,23 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+.sign-up
+  h2.title.is-3.login__title 
+    | 新規登録
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "sign-up__form") do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
+      br
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "メールアドレス"
+    .field
+      = f.label :password
+      - if @minimum_password_length
+        em ="(#{@minimum_password_length}文字以上)"
+      br
+      = f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "パスワード"
+    .field
+      = f.label :password_confirmation
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "パスワード（もう一度入力）"
+    .actions
+      = f.submit "新規登録", class: "button is-warning has-text-weight-bold"
+  .sign-up__links
+    = render "devise/shared/links"
