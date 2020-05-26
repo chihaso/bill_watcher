@@ -1,0 +1,11 @@
+.login {
+  width: 20%;
+  min-width: 300px; 
+  margin: 10% auto auto auto;
+}
+.login__form_checkbox {
+  margin-right: 7px;
+}
+.login__links {
+  margin-top: 20px;
+}
