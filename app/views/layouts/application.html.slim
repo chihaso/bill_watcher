@@ -17,7 +17,7 @@ html
                 p.logo = "審議法案ウォッチャー"
         .navbar-end
           .container.navbar-menu
-            - if @user
+            - if @user.id
               .navbar-item
                 = link_to "#" do
                   img src=""
