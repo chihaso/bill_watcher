@@ -58,6 +58,7 @@ ja:
       name: "ユーザー名"
       email: "メールアドレス"
       edit: "編集する"
+      cannot_get_other_user_page: "自分以外のユーザーのマイページは閲覧できません"
   views:
     pagination:
       previous: "&lsaquo; 前"
