@@ -17,11 +17,11 @@ html
                 p.logo = "審議法案ウォッチャー"
         .navbar-end
           .container.navbar-menu
-            - if @user && @user.id
+            - if user_signed_in?
               .navbar-item
-                = link_to "#" do
-                  img src=""
-                  span.name = @user.name
+                = link_to current_user do
+                  img.currnet-user-icon src=""
+                  span.currnet-user-name = current_user.name
               .navbar-item
                 = link_to destroy_user_session_path, method: :delete  do
                   button.button.is-light.is-small ログアウト 
