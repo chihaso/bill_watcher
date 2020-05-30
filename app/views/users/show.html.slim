@@ -1,0 +1,14 @@
+.container.user-page
+  h1.title.is-3
+    = t ".title"
+  .user-page__user-info.box
+    table.table
+      tbody
+        tr
+          td = t(".name") + ": "
+          td = @user.name
+        tr
+          td = t(".email") + ": "
+          td = @user.email
+    = link_to t(".edit"), edit_user_registration_path, class: "button is-warning"
+  

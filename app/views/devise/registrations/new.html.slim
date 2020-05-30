@@ -1,5 +1,5 @@
 .sign-up
-  h2.title.is-3.login__title 
+  h2.title.is-3.sign-up__title 
     | 新規登録
   = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "sign-up__form") do |f|
     = render "devise/shared/error_messages", resource: resource
@@ -10,7 +10,7 @@
     .field
       = f.label :name
       br
-      = f.text_field :name, autofocus: true, autocomplete: "name", class: "input", placeholder: "名前"
+      = f.text_field :name, autofocus: true, autocomplete: "name", class: "input", placeholder: "ユーザー名"
     .field
       = f.label :password
       - if @minimum_password_length

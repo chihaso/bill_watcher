@@ -52,6 +52,12 @@ ja:
       success: "コメントを修正しました"
     destroy:
       success: "コメントを削除しました"
+  users:
+    show:
+      title: "マイページ"
+      name: "ユーザー名"
+      email: "メールアドレス"
+      edit: "編集する"
   views:
     pagination:
       previous: "&lsaquo; 前"
