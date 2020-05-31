@@ -92,14 +92,19 @@ ja:
     registrations:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
+        title: ユーザー情報変更
+        email: メールアドレス
+        name: ユーザー名
+        characters_minimum: "%{length}文字以上"
+        new_password: 新しいパスワード
+        new_password_confirmation: 新しいパスワード(確認用)
+        current_password: 現在のパスワード
         are_you_sure: 本当によろしいですか?
         cancel_my_account: アカウント削除
-        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
-        title: "%{resource}編集"
-        unhappy: 気に入りません
+        leave_blank_if_you_don_t_want_to_change_it: (変更しない場合は入力しないでください)
         update: 更新
-        we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
+        we_need_your_current_password_to_confirm_your_changes: (変更するには現在のパスワードを入力してください)
+        back_to_user_page: マイページに戻る
       new:
         sign_up: アカウント登録
       signed_up: アカウント登録が完了しました。
