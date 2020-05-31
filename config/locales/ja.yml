@@ -59,6 +59,7 @@ ja:
       email: "メールアドレス"
       edit: "編集する"
       cannot_get_other_user_page: "自分以外のユーザーのマイページは閲覧できません"
+      icon: "ユーザーアイコン"
   views:
     pagination:
       previous: "&lsaquo; 前"

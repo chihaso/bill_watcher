@@ -17,7 +17,7 @@ article {
   margin-bottom: 50px;
 }
 .logo {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   color: rgba(255, 255, 255, 1);
 }
@@ -31,4 +31,25 @@ article {
 .currnet-user-name{
   color: rgba(255, 255, 255, 1);
   font-weight: bold;
+}
+.user-icon {
+  width: 100px;
+  border-radius: 50%;
+  border: medium solid #7c7c7c
+}
+.user-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+.small-user-icon {
+  width: 50px;
+  margin-top: 3px;
+  margin-right: 5px;
+  border-radius: 50%;
+  border: medium solid #7c7c7c
+}
+.currnet-user-name {
+  margin-right: 20px;
 }

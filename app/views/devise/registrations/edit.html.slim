@@ -4,6 +4,15 @@
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
+      = f.label t(".icon")
+      br
+      - if @user.icon.attached?
+        = image_tag @user.icon, class: "user-icon"
+      - else
+        = image_tag "default_icon.jpeg", class: "user-icon"
+      br
+      = f.file_field :icon, class: "upload"
+    .field
       = f.label :email
       br
       = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "input", placeholder: t(".name")
