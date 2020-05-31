@@ -1,0 +1,10 @@
+.edit-user-info {
+  width: 400px; 
+  margin: 5% auto auto auto;
+}
+.edit-user-info__links {
+  margin-top: 20px;
+}
+.edit-user-info__delete-account-button {
+  margin-top: 20px;
+}

@@ -1,42 +1,37 @@
-h2
-  | Edit 
-  = resource_name.to_s.humanize
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    div
-      | Currently waiting confirmation for: 
-      = resource.unconfirmed_email
-  .field
-    = f.label :password
-    i
-      | (leave blank if you don't want to change it)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
+.edit-user-info
+  h2.title.is-3.edit-user-info__title 
+    = t ".title"
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
       br
-      em
-        = @minimum_password_length
-        |  characters minimum
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    i
-      | (we need your current password to confirm your changes)
-    br
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-h3
-  | Cancel my account
-p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-= link_to "Back", :back
+      = f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "input", placeholder: t(".name")
+    .field
+      = f.label :name
+      br
+      = f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: "input", placeholder: t(".name")
+    .field
+      = f.label t(".new_password")
+      br
+      i = t ".leave_blank_if_you_don_t_want_to_change_it"
+      br
+      = f.password_field :password, autocomplete: "new_password", class: "input", placeholder: t(".new_password")
+      - if @minimum_password_length
+        br
+        em = t(".characters_minimum", length: @minimum_password_length)
+    .field
+      = f.label t(".new_password_confirmation")
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: t(".new_password_confirmation")
+    .field
+      = f.label :current_password
+      br
+      i = t ".we_need_your_current_password_to_confirm_your_changes"
+      br
+      = f.password_field :current_password, autocomplete: "current-password", required: true, class: "input", placeholder: t(".current_password")
+    .actions
+      = f.submit t(".update"), class: "button is-warning"
+  = button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete, class: "button is-danger edit-user-info__delete-account-button"
+  .edit-user-info__links
+    = link_to t(".back_to_user_page"), user_path(current_user)
