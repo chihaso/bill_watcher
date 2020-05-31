@@ -106,7 +106,12 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: (変更するには現在のパスワードを入力してください)
         back_to_user_page: マイページに戻る
       new:
-        sign_up: アカウント登録
+        title: 新規登録
+        sign_up: 新規登録
+        email: メールアドレス
+        name: ユーザー名
+        password: パスワード
+        characters_minimum: "(%{length}文字以上)"
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
       signed_up_but_locked: アカウントが凍結されているためログインできません。
@@ -117,7 +122,10 @@ ja:
     sessions:
       already_signed_out: 既にログアウト済みです。
       new:
+        title: ログイン
         sign_in: ログイン
+        email: メールアドレス
+        password: パスワード
       signed_in: ログインしました。
       signed_out: ログアウトしました。
     shared:

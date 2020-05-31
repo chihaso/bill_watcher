@@ -1,5 +1,5 @@
 - if controller_name != 'sessions'
-  = link_to "ログインはこちら", new_session_path(resource_name)
+  = link_to t(".sign_in"), new_session_path(resource_name)
   br
-/ - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-/   = link_to "パスワードを忘れた時はこちら", new_password_path(resource_name)
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  = link_to t(".forgot_your_password"), new_password_path(resource_name)
