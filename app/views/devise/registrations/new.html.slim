@@ -1,27 +1,27 @@
 .sign-up
-  h2.title.is-3.sign-up__title 
-    | 新規登録
+  h2.title.is-3.sign-up__title
+    = t ".title"
   = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "sign-up__form") do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
       = f.label :email
       br
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "メールアドレス"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: t(".email")
     .field
       = f.label :name
       br
-      = f.text_field :name, autofocus: true, autocomplete: "name", class: "input", placeholder: "ユーザー名"
+      = f.text_field :name, autofocus: true, autocomplete: "name", class: "input", placeholder: t(".name")
     .field
       = f.label :password
       - if @minimum_password_length
-        em ="(#{@minimum_password_length}文字以上)"
+        em = t(".characters_minimum", length: @minimum_password_length)
       br
-      = f.password_field :password, autocomplete: "new-password", class: "input", placeholder: "パスワード"
+      = f.password_field :password, autocomplete: "new-password", class: "input", placeholder: t(".password")
     .field
       = f.label :password_confirmation
       br
-      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "パスワード（もう一度入力）"
+      = f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: t(".password")
     .actions
-      = f.submit "新規登録", class: "button is-warning has-text-weight-bold"
+      = f.submit t(".sign_up"), class: "button is-warning has-text-weight-bold"
   .sign-up__links
     = render "devise/shared/links"
