@@ -93,6 +93,7 @@ ja:
       destroyed: アカウントを削除しました。またのご利用をお待ちしております。
       edit:
         title: ユーザー情報変更
+        icon: "ユーザーアイコン"
         email: メールアドレス
         name: ユーザー名
         characters_minimum: "%{length}文字以上"

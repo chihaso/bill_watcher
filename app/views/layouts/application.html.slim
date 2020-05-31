@@ -18,11 +18,13 @@ html
         .navbar-end
           .container.navbar-menu
             - if user_signed_in?
-              .navbar-item
-                = link_to current_user do
-                  img.currnet-user-icon src=""
-                  span.currnet-user-name = current_user.name
-              .navbar-item
+              .user-menu
+                = link_to current_user, class: "user-link" do
+                  - if current_user.icon.attached?
+                    = image_tag current_user.icon, class: "small-user-icon"
+                  - else
+                    = image_tag "default_icon", class: "small-user-icon"
+                = link_to current_user.name, current_user, class: "currnet-user-name"
                 = link_to destroy_user_session_path, method: :delete  do
                   button.button.is-light.is-small ログアウト 
             - else
