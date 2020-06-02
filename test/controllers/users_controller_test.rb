@@ -8,12 +8,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:one)
   end
 
-  test "should get show" do
+  test "自分のマイページを表示できる" do
     get user_url(users(:one).id)
     assert_response :success
   end
 
-  test "redirect to my show when request other user's" do
+  test "自分以外のアカウントのマイページにアクセスするとリダイレクトされる" do
     get user_url(users(:two).id)
     assert_response :redirect
   end
