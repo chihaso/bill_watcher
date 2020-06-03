@@ -5,15 +5,14 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  name: "one",
+  name: "わんわんわん",
   email: "one@example.com",
   encrypted_password: '<%= Devise::Encryptor.digest(User, "testtest") %>',
 }
-# column: value
-#
+
 two: {
-  name: "two",
+  name: "とぅーとぅーとぅー",
   email: "two@example.com",
   encrypted_password: '<%= Devise::Encryptor.digest(User, "testtest") %>',
 }
-# column: value
+
