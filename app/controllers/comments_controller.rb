@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @bill.comments.new(comment_params)
+    @comment.user = current_user
     if @comment.save
       redirect_to bill_path(@comment.bill), notice: t(".success")
     else
