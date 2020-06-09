@@ -3,10 +3,15 @@
 require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  setup do
+    sign_in users(:one)
+  end
+
   test "コメントの作成に成功した場合、法案詳細ページにリダイレクトされる" do
     bill = bills(:one)
     assert_difference -> { bill.comments.count } do
-      post bill_comments_url(bill), params: { comment: { description: "test" } }
+      post bill_comments_url(bill), params: { comment: { description: "あたらしいコメント" } }
     end
     assert_redirected_to bill_url(bill)
   end
