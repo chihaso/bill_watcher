@@ -2,8 +2,10 @@
 
 one:
   bill: one
+  user: one
   description: 法案oneへのコメント
 
 two:
   bill: one
+  user: one
   description: MyText
