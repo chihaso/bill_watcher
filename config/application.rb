@@ -26,5 +26,7 @@ module BillWatcher
       g.assets false
       g.helper false
     end
+
+    config.time_zone = "Tokyo"
   end
 end
