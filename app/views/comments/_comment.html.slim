@@ -1,2 +1,43 @@
-.box
-  p.comment = comment.description
+.comment.box
+  .comment__user
+    = user_icon(comment.user)
+    span.user-name = comment.user.name
+  .comment__body
+    p.comment__body_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
+    p.comment__body_description = safe_join(comment.description.split("\n"), tag(:br))
+  
+css:
+  .comment {
+    display: flex;
+  }
+  .comment__user {
+    min-width: 60px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .comment__user img {
+    margin: auto
+  }
+  .comment__user span {
+    margin-top: 4px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .comment__body {
+    width: 90%;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .comment__body_time {
+    font-size: 14px;
+    color: #bbb;
+    text-align: right;
+  }
+   .comment__body_description {
+    word-wrap: break-word;
+  }
+ 
+ 
