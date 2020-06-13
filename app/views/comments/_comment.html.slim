@@ -1,6 +1,6 @@
 .comment.box
   .comment__user
-    = image_tag comment.user.icon, class: "small-user-icon"
+    = user_icon(comment.user)
     span.user_name = comment.user.name
   .comment__body
     p.comment__body_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")

@@ -20,11 +20,8 @@ html
             - if user_signed_in?
               .user-menu
                 = link_to current_user, class: "user-link" do
-                  - if current_user.icon.attached?
-                    = image_tag current_user.icon, class: "small-user-icon"
-                  - else
-                    = image_tag "default_icon", class: "small-user-icon"
-                = link_to current_user.name, current_user, class: "currnet-user-name"
+                  = user_icon(current_user)
+                  span = current_user.name
                 = link_to destroy_user_session_path, method: :delete  do
                   button.button.is-light.is-small.sign-out-button ログアウト 
             - else

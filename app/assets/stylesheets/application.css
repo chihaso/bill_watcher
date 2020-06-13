@@ -28,9 +28,12 @@ article {
   margin-top: 20px;
   margin-bottom: 30px
 }
-.currnet-user-name{
+.user-link {
+  display: flex;
+  align-items: center;
   color: rgba(255, 255, 255, 1);
   font-weight: bold;
+  margin: 3px 20px 3px 0;
 }
 .user-icon {
   width: 100px;
@@ -46,11 +49,7 @@ article {
 .small-user-icon {
   width: 50px;
   height: 50px;
-  margin-top: 3px;
   margin-right: 5px;
   border-radius: 50%;
   border: medium solid #7c7c7c
-}
-.currnet-user-name {
-  margin-right: 20px;
 }
