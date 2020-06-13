@@ -1,7 +1,7 @@
 .comment.box
   .comment__user
     = user_icon(comment.user)
-    span.user_name = comment.user.name
+    span.user-name = comment.user.name
   .comment__body
     p.comment__body_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
     p.comment__body_description = safe_join(comment.description.split("\n"), tag(:br))
