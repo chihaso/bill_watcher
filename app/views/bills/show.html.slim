@@ -33,7 +33,7 @@ article
     .comments
       h2.title.is-4 = t ".comment_title"
       - if @bill.comments.present?
-        = render partial: "comments/comment", collection: @comments, as: :comment
+        = render partial: "comments/comment", locals: { bill: @bill }, collection: @comments, as: :comment
       - else
         p.has-text-grey.no-comment = t ".no_comment"
       .comment-form

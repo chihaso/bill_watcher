@@ -1,43 +1,74 @@
 .comment.box
-  .comment__user
-    = user_icon(comment.user)
-    span.user-name = comment.user.name
-  .comment__body
-    p.comment__body_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
-    p.comment__body_description = safe_join(comment.description.split("\n"), tag(:br))
+  .comment__left
+    .comment__left_user
+      = user_icon(comment.user)
+      span.user-name = comment.user.name
+  .comment__right
+    .comment__right_head
+      p.comment__right_head_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
+    .comment__right_body
+      p.comment__right_body_description = safe_join(comment.description.split("\n"), tag(:br))
+      - if comment.user == current_user
+        .comment__right_body_buttons
+          .edit_button.button.is-warning = link_to '編集', bill_comment_path(bill_id: bill.id, id: comment.id), method: :put
+          .delete_button.button.is-danger = link_to '削除', bill_comment_path(bill_id: bill.id, id: comment.id), method: :delete
+
   
 css:
   .comment {
     display: flex;
   }
-  .comment__user {
+  .comment__left {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .comment__left_user {
     min-width: 60px;
     height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .comment__user img {
+  .comment__left_user img {
     margin: auto
   }
-  .comment__user span {
+  .comment__left_user span {
     margin-top: 4px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11.5px;
   }
-  .comment__body {
+  .comment__right {
     width: 90%;
     margin-left: 40px;
-    display: flex;
-    flex-direction: column;
   }
-  .comment__body_time {
+  .comment__right_head_time {
+    width: 100%;
     font-size: 14px;
-    color: #bbb;
+    color: #999;
     text-align: right;
   }
-   .comment__body_description {
-    word-wrap: break-word;
+  .comment__right_body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between
   }
- 
- 
+  .comment__right_body_description {
+    word-wrap: break-word;
+    width: 80%
+  }
+  .comment__right_body_buttons {
+    width: 80px;
+    text-align: right
+  }
+  .comment__right_body_buttons .edit_button {
+    margin-top: 5px;
+    margin-bottom: 5px
+  }
+  .comment__right_body_buttons .edit_button a {
+    color: black
+  }
+  .comment__right_body_buttons .delete_button a {
+    color: white
+  }
