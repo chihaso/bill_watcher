@@ -1,4 +1,4 @@
-.comment.box
+.comment.box id="comment_#{comment.id}"
   .comment__left
     .comment__left_user
       = user_icon(comment.user)
@@ -6,14 +6,29 @@
   .comment__right
     .comment__right_head
       p.comment__right_head_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
-    .comment__right_body
-      p.comment__right_body_description = safe_join(comment.description.split("\n"), tag(:br))
-      - if comment.user == current_user
+    - unless comment.user == current_user
+      .comment__right_body id="comment_body_#{comment.id}"
+        p.comment__right_body_description
+          = safe_join(comment.description.split("\n"), tag(:br))
+    - else
+      .comment__right_body id="comment_body_#{comment.id}"
+        p.comment__right_body_description
+          = safe_join(comment.description.split("\n"), tag(:br))
         .comment__right_body_buttons
-          .edit_button.button.is-warning = link_to '編集', bill_comment_path(bill_id: bill.id, id: comment.id), method: :put
-          .delete_button.button.is-danger = link_to '削除', bill_comment_path(bill_id: bill.id, id: comment.id), method: :delete
+          button.edit_button.button.is-warning onclick="openEditCommentForm(#{comment.id})"
+            = I18n.t('.comments.edit')
+          .delete_button.button.is-danger
+            = link_to I18n.t('.comments.delete'), bill_comment_path(bill_id: bill.id, id: comment.id),
+                        method: :delete, local: true, data: { confirm: I18n.t(".comments.confirm.delete")}
+      .comment__right_edit_body id="edit_comment_body_#{comment.id}" style="display:none"
+        = form_with(model: [bill, comment], local: true, class: "comment__right_edit-form") do |f|
+          = f.text_area :description, class: "comment__right_edit-form_description"
+            = safe_join(comment.description.split("\n"), tag(:br))
+          .comment__right_body_buttons
+            = f.submit value: I18n.t('.comments.send'), class: "edit_button button is-link", data: { "disable-with": I18n.t('.comments.sending') }
+            button.button type="button" onclick="closeEditCommentForm(#{comment.id})"
+              = I18n.t('.comments.cancel')
 
-  
 css:
   .comment {
     display: flex;
@@ -54,6 +69,16 @@ css:
     display: flex;
     justify-content: space-between
   }
+  .comment__right_edit-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+  }
+  .comment__right_edit-form_description {
+    word-wrap: break-word;
+    width: 80%;
+    font-size: 16px;
+  }
   .comment__right_body_description {
     word-wrap: break-word;
     width: 80%
@@ -71,4 +96,15 @@ css:
   }
   .comment__right_body_buttons .delete_button a {
     color: white
+  }
+
+javascript:
+  function openEditCommentForm(commentId) {
+    document.getElementById(`edit_comment_body_${commentId}`).style = 'display:flex'
+    document.getElementById(`comment_body_${commentId}`).style = 'display:none'
+  }
+
+  function closeEditCommentForm(commentId) {
+    document.getElementById(`edit_comment_body_${commentId}`).style = 'display:none'
+    document.getElementById(`comment_body_${commentId}`).style = 'display:flex'
   }

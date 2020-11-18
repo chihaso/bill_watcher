@@ -46,6 +46,13 @@ ja:
     new_comment: "新規コメント"
     submit: "投稿する"
     placeholder: "コメントを記入してください"
+    edit: 編集
+    delete: 削除
+    send: 送信
+    sending: 送信中
+    cancel: 中止
+    confirm:
+      delete: コメントを削除してよろしいですか？
     create:
       success: "コメントを投稿しました"
     update:
