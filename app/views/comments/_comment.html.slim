@@ -1,43 +1,110 @@
-.comment.box
-  .comment__user
-    = user_icon(comment.user)
-    span.user-name = comment.user.name
-  .comment__body
-    p.comment__body_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
-    p.comment__body_description = safe_join(comment.description.split("\n"), tag(:br))
-  
+.comment.box id="comment_#{comment.id}"
+  .comment__left
+    .comment__left_user
+      = user_icon(comment.user)
+      span.user-name = comment.user.name
+  .comment__right
+    .comment__right_head
+      p.comment__right_head_time = comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S")
+    - unless comment.user == current_user
+      .comment__right_body id="comment_body_#{comment.id}"
+        p.comment__right_body_description
+          = safe_join(comment.description.split("\n"), tag(:br))
+    - else
+      .comment__right_body id="comment_body_#{comment.id}"
+        p.comment__right_body_description
+          = safe_join(comment.description.split("\n"), tag(:br))
+        .comment__right_body_buttons
+          button.edit_button.button.is-warning onclick="openEditCommentForm(#{comment.id})"
+            = I18n.t('.comments.edit')
+          .delete_button.button.is-danger
+            = link_to I18n.t('.comments.delete'), bill_comment_path(bill_id: bill.id, id: comment.id),
+                        method: :delete, local: true, data: { confirm: I18n.t(".comments.confirm.delete")}
+      .comment__right_edit_body id="edit_comment_body_#{comment.id}" style="display:none"
+        = form_with(model: [bill, comment], local: true, class: "comment__right_edit-form") do |f|
+          = f.text_area :description, class: "comment__right_edit-form_description"
+            = safe_join(comment.description.split("\n"), tag(:br))
+          .comment__right_body_buttons
+            = f.submit value: I18n.t('.comments.send'), class: "edit_button button is-link", data: { "disable-with": I18n.t('.comments.sending') }
+            button.button type="button" onclick="closeEditCommentForm(#{comment.id})"
+              = I18n.t('.comments.cancel')
+
 css:
   .comment {
     display: flex;
   }
-  .comment__user {
+  .comment__left {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+  .comment__left_user {
     min-width: 60px;
     height: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .comment__user img {
+  .comment__left_user img {
     margin: auto
   }
-  .comment__user span {
+  .comment__left_user span {
     margin-top: 4px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11.5px;
   }
-  .comment__body {
+  .comment__right {
     width: 90%;
     margin-left: 40px;
-    display: flex;
-    flex-direction: column;
   }
-  .comment__body_time {
+  .comment__right_head_time {
+    width: 100%;
     font-size: 14px;
-    color: #bbb;
+    color: #999;
     text-align: right;
   }
-   .comment__body_description {
-    word-wrap: break-word;
+  .comment__right_body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between
   }
- 
- 
+  .comment__right_edit-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+  }
+  .comment__right_edit-form_description {
+    word-wrap: break-word;
+    width: 80%;
+    font-size: 16px;
+  }
+  .comment__right_body_description {
+    word-wrap: break-word;
+    width: 80%
+  }
+  .comment__right_body_buttons {
+    width: 80px;
+    text-align: right
+  }
+  .comment__right_body_buttons .edit_button {
+    margin-top: 5px;
+    margin-bottom: 5px
+  }
+  .comment__right_body_buttons .edit_button a {
+    color: black
+  }
+  .comment__right_body_buttons .delete_button a {
+    color: white
+  }
+
+javascript:
+  function openEditCommentForm(commentId) {
+    document.getElementById(`edit_comment_body_${commentId}`).style = 'display:flex'
+    document.getElementById(`comment_body_${commentId}`).style = 'display:none'
+  }
+
+  function closeEditCommentForm(commentId) {
+    document.getElementById(`edit_comment_body_${commentId}`).style = 'display:none'
+    document.getElementById(`comment_body_${commentId}`).style = 'display:flex'
+  }
