@@ -42,6 +42,8 @@ gem "activesupport", ">= 6.0.3.1"
 gem "actionpack", ">= 6.0.3.1"
 gem "activestorage", ">= 6.0.3.1"
 gem "nokogiri", ">= 1.11.0.rc4"
+gem "sprockets"
+gem "sprockets-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
