@@ -66,6 +66,9 @@ group :development do
   # not default
   gem "slim_lint"
   gem "html2slim"
+  gem "capistrano", require: false
+  gem "capistrano-rbenv", require: false
+  gem "capistrano-rails", require: false
 end
 
 group :test do
