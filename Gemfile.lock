@@ -62,6 +62,7 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.0)
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -74,12 +75,18 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (2.0.1)
       capistrano (~> 3.1)
+    capistrano-nvm (0.0.7)
+      capistrano (~> 3.1)
     capistrano-rails (1.6.1)
       capistrano (~> 3.1)
       capistrano-bundler (>= 1.1, < 3)
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano3-puma (5.0.2)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 4.0, < 6.0)
     capybara (3.32.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -100,6 +107,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.1)
       devise (>= 4.7.1)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     ffi (1.12.2)
     globalid (0.4.2)
@@ -302,14 +310,18 @@ DEPENDENCIES
   actionpack (>= 6.0.3.1)
   activestorage (>= 6.0.3.1)
   activesupport (>= 6.0.3.1)
+  bcrypt_pbkdf
   bootsnap (>= 1.4.2)
   byebug
   capistrano
+  capistrano-nvm
   capistrano-rails
   capistrano-rbenv
+  capistrano3-puma
   capybara (>= 2.15)
   devise
   devise-i18n
+  ed25519
   html2slim
   hurricane_trimar
   jbuilder (~> 2.7)
