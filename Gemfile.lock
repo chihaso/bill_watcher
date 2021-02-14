@@ -58,13 +58,35 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    airbrussh (1.4.0)
+      sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.0)
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
+    capistrano (3.15.0)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (2.0.1)
+      capistrano (~> 3.1)
+    capistrano-nvm (0.0.7)
+      capistrano (~> 3.1)
+    capistrano-rails (1.6.1)
+      capistrano (~> 3.1)
+      capistrano-bundler (>= 1.1, < 3)
+    capistrano-rbenv (2.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-puma (5.0.2)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 4.0, < 6.0)
     capybara (3.32.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -75,7 +97,7 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     chronic (0.10.2)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.8)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
@@ -85,7 +107,8 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.1)
       devise (>= 4.7.1)
-    erubi (1.9.0)
+    ed25519 (1.2.4)
+    erubi (1.10.0)
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -93,7 +116,7 @@ GEM
     html2slim (0.2.0)
       hpricot
     hurricane_trimar (0.1.0)
-    i18n (1.8.2)
+    i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -113,7 +136,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.7.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -124,10 +147,13 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.2)
+    minitest (5.14.3)
     msgpack (1.3.3)
+    net-scp (3.0.0)
+      net-ssh (>= 2.6.5, < 7.0.0)
+    net-ssh (6.1.0)
     nio4r (2.5.2)
-    nokogiri (1.11.0.rc4)
+    nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -232,14 +258,17 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
-    sprockets (4.0.0)
+    sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.1)
+    sprockets-rails (3.2.2)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    sshkit (1.21.2)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -247,7 +276,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.7)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
     warden (1.2.8)
@@ -272,7 +301,7 @@ GEM
       chronic (>= 0.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -281,11 +310,18 @@ DEPENDENCIES
   actionpack (>= 6.0.3.1)
   activestorage (>= 6.0.3.1)
   activesupport (>= 6.0.3.1)
+  bcrypt_pbkdf
   bootsnap (>= 1.4.2)
   byebug
+  capistrano
+  capistrano-nvm
+  capistrano-rails
+  capistrano-rbenv
+  capistrano3-puma
   capybara (>= 2.15)
   devise
   devise-i18n
+  ed25519
   html2slim
   hurricane_trimar
   jbuilder (~> 2.7)
@@ -304,6 +340,8 @@ DEPENDENCIES
   slim_lint
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets
+  sprockets-rails
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data

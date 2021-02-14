@@ -42,6 +42,10 @@ gem "activesupport", ">= 6.0.3.1"
 gem "actionpack", ">= 6.0.3.1"
 gem "activestorage", ">= 6.0.3.1"
 gem "nokogiri", ">= 1.11.0.rc4"
+gem "sprockets"
+gem "sprockets-rails"
+gem "ed25519"
+gem "bcrypt_pbkdf"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -64,6 +68,11 @@ group :development do
   # not default
   gem "slim_lint"
   gem "html2slim"
+  gem "capistrano", require: false
+  gem "capistrano-rbenv", require: false
+  gem "capistrano-rails", require: false
+  gem "capistrano-nvm", require: false
+  gem "capistrano3-puma", require: false
 end
 
 group :test do
