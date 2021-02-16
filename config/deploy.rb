@@ -13,7 +13,7 @@ set :nvm_node, "v14.0.0"
 set :nvm_map_bins, %w{npm node yarn rake}
 
 # Default branch is :master
-set :branch, :main
+set :branch, :bulma_test
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/yuta/my_web_apps/bill_watcher"

@@ -46,6 +46,7 @@ gem "sprockets"
 gem "sprockets-rails"
 gem "ed25519"
 gem "bcrypt_pbkdf"
+gem "bulma-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

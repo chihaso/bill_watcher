@@ -6,7 +6,6 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.2.1",
-    "bulma": "^0.8.2",
     "node-forge": ">=0.10.0",
     "serialize-javascript": "^4.0.0",
     "turbolinks": "^5.2.0"
