@@ -1,39 +1,89 @@
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/ruby:2.7.1-node-browsers
+version: 2.1
 
-    working_directory: ~/repo
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: circleci/ruby:2.7.1-node-browsers
 
+commands:
+  install_gems:
     steps:
-      - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+            - v1-bundle-{{ checksum "Gemfile.lock" }}
+            - v1-bundle-
       - run:
-          name: install dependencies
+          name: install bundler
           command: |
-            gem install bundler:1.17.2
+            gem install bundler:2.1.4
             bundle check --path=vendor/bundle || bundle install -j4 --path=vendor/bundle --clean
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
 
+  install_yarn_packages:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-yarn-{{ checksum "yarn.lock" }}
+            - v1-yarn-
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: v1-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  test:
+    steps:
+      - run:
+          name: database setup
+          command: bundle exec rails db:schema:load --trace
+      - run:
+          name: run tests
+          command: bundle exec rails test
+          when: always
+      - store_test_results:
+          path: test/reports
+      - store_artifacts:
+          path: test/reports
+          destination: reports
+  
+  lint:
+    steps:
       - run:
           name: run rubocop
           command: bundle exec rubocop
-      # - run:
-      #     name: rub slim-lint
-      #     command: bundle exec slim-lint app/views
 
-      # - run:
-      #     name: run scss-lint
-      #     command: bundle exec scss-lint .
+jobs:
+  build-test-lint:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      - install_gems
+      - install_yarn_packages
+      - test
+      - lint
+  deploy:
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      - install_gems
+      - run:
+          name: deploy
+          command: bundle exec cap production deploy
+      
+workflows:
+  version: 2.1
+  build_and_test:
+    jobs:
+      - build-test-lint
+      - deploy:
+          requires:
+            - build-test-lint
+          filters:
+            branches:
+              only: main
