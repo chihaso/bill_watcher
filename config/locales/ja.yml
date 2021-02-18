@@ -11,8 +11,8 @@ ja:
         bill_number: "議案番号"
         proposer: "提案元"
         status: "審議状況"
+        honbun: "議案本文情報"
         proposal: "提出時法案"
-        outline: "要綱"
       comment:
         description: コメント文
   bills:
@@ -35,8 +35,8 @@ ja:
       submitted_session: "提出会期"
       discussed_session: "審議会期"
       bill_number: "議案番号"
+      honbun: "議案本文情報"
       proposal: "提出時法律案"
-      outline: "要綱"
       status: "審議状況"
       link: "リンク"
       comment_title: "コメント"

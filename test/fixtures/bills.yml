@@ -6,8 +6,8 @@ one:
   submitted_session_number: 1
   discussed_session_number: 1
   bill_number: 1
+  honbun: MyText
   proposal: MyText
-  outline: MyText
   status: MyText
 
 two:
@@ -16,6 +16,6 @@ two:
   submitted_session_number: 1
   discussed_session_number: 1
   bill_number: 1
+  honbun: MyText
   proposal: MyText
-  outline: MyText
   status: MyText

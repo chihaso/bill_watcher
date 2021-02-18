@@ -48,8 +48,8 @@ class BillParser
           title:                    contents[2],
           proposer:                 proposer_name,
           discussed_session_number: current_session_number,
+          honbun:                   BillUri.honbun_url(contents[0], proposer_id, contents[1]),
           proposal:                 BillUri.proposal_url(contents[0], proposer_id, contents[1]),
-          outline:                  BillUri.outline_url(contents[0], proposer_id, contents[1]),
           status:                   contents[3]
         }
       end

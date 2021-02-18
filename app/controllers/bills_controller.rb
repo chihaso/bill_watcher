@@ -25,8 +25,8 @@ class BillsController < ApplicationController
         :proposer,
         :session_number,
         :bill_number,
+        :honbun,
         :proposal,
-        :outline,
         :status
       )
     end
