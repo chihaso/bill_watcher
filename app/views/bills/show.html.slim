@@ -24,9 +24,9 @@ article
           tr
             td = t(".link") + ": "
             td 
-              = link_to t(".honbun"), @bill.honbun
-              br
               = link_to t(".proposal"), @bill.proposal
+              br
+              = link_to t(".outline"), @bill.outline
 
     = link_to t(".back"), bills_path
 

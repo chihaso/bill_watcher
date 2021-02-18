@@ -9,12 +9,12 @@ class BillUri
       numbers.map { BILLS_URI_PREFIX + "kaiji#{_1}.htm" }
     end
 
-    def honbun_url(submitted_session_number, proposer_id, bill_number)
-      BILLS_URI_PREFIX + "honbun/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
-    end
-
     def proposal_url(submitted_session_number, proposer_id, bill_number)
       BILLS_URI_PREFIX + "honbun/houan/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
+    end
+
+    def outline_url(submitted_session_number, proposer_id, bill_number)
+      BILLS_URI_PREFIX + "youkou/g" + bill_page_number(submitted_session_number, proposer_id, bill_number) + ".htm"
     end
 
     private

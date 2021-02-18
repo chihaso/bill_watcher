@@ -11,8 +11,8 @@ class BillParserTest < ActiveSupport::TestCase
       title: "公文書等の管理に関する法律の一部を改正する法律案",
       proposer: "衆議院",
       discussed_session_number: "201",
-      honbun:   "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/g19505004.htm",
       proposal: "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g19505004.htm",
+      outline: "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/youkou/g19505004.htm",
       status: "衆議院で審議中"
     }
     last_bill = {
@@ -21,8 +21,8 @@ class BillParserTest < ActiveSupport::TestCase
       title: "地方公務員法の一部を改正する法律案",
       proposer: "内閣",
       discussed_session_number: "201",
-      honbun:   "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/g20109053.htm",
       proposal: "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g20109053.htm",
+      outline: "http://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/youkou/g20109053.htm",
       status: "衆議院で審議中"
     }
     bills = BillParser.bills(PAGE)
