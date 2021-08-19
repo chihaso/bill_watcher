@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "6.0.3.3"
+gem "rails", "~> 6"
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 # Use Puma as the app server
@@ -39,7 +39,8 @@ gem "ransack"
 gem "devise"
 gem "devise-i18n"
 gem "activesupport", ">= 6.0.3.1"
-gem "actionpack", ">= 6.0.3.1"
+gem "actionpack", ">= 6.0.3.7"
+gem "activerecord", ">= 6.0.3.5"
 gem "activestorage", ">= 6.0.3.1"
 gem "nokogiri", ">= 1.11.0.rc4"
 gem "sprockets"
