@@ -9,7 +9,7 @@
     "node-forge": ">=0.10.0",
     "serialize-javascript": "^4.0.0",
     "turbolinks": "^5.2.0",
-    "glob-parent": "^5.1.2"
+    "glob-parent": ">=5.1.2"
   },
   "version": "0.1.0",
   "devDependencies": {
