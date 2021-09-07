@@ -8,6 +8,12 @@ class BillScrapper
       all_bill_pages.flat_map { BillParser.bills(_1) }
     end
 
+    # 開発用
+    def specified_sessions(discussed_session_numbers)
+      pages = BillUri.session_urls(discussed_session_numbers).map { read_as_cp932(_1) }
+      pages.flat_map { BillParser.bills(_1) }
+    end
+
     private
       def all_bill_pages
         @bill_pages ||=

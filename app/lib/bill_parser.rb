@@ -48,8 +48,8 @@ class BillParser
           title:                    contents[2],
           proposer:                 proposer_name,
           discussed_session_number: current_session_number,
-          honbun:                   BillUri.honbun_url(contents[0], proposer_id, contents[1]),
-          proposal:                 BillUri.proposal_url(contents[0], proposer_id, contents[1]),
+          honbun:                   honbun_url(contents[5]),
+          proposal:                 proposal_url(contents[5]),
           status:                   contents[3]
         }
       end
@@ -64,6 +64,19 @@ class BillParser
 
       def content_in_field(field)
         field.match(%r{<span.*?>(.*?)</span>}).captures[0]
+      end
+
+      def honbun_url(content)
+        extract_href(content) ? BillUri.honbun_url(extract_href(content)) : nil
+      end
+
+      def proposal_url(content)
+        extract_href(content) ? BillUri.proposal_url(extract_href(content)) : nil
+      end
+
+      def extract_href(anchor)
+        match = anchor.match(%r{<a.*?href="./(.*?)".*?>.*?</a>})
+        match ? match.captures[0] : nil
       end
   end
 end
