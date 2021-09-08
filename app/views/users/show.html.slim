@@ -1,18 +1,20 @@
-.container.user-page
-  h1.title.is-3
-    = t ".title"
-  .user-page__user-info.box
-    - if @user.icon.attached?
-      = image_tag @user.icon, class: "user-icon"
-    - else
-      = image_tag "default_icon.jpeg", class: "user-icon"
-    table.table
-      tbody
-        tr
-          td = t(".name") + ": "
-          td = @user.name
-        tr
-          td = t(".email") + ": "
-          td = @user.email
-    = link_to t(".edit"), edit_user_registration_path, class: "button is-warning edit-user-info"
-  
+.container
+  .user-page-contents
+    h1.title.is-3
+      = t ".title"
+    .box.user-info-box
+      .user-info
+        - if @user.icon.attached?
+          = image_tag @user.icon, class: "user-icon"
+        - else
+          = image_tag "default_icon.jpeg", class: "user-icon"
+        table.table
+          tbody
+            tr
+              td = t(".name") + ": "
+              td = @user.name
+            tr
+              td = t(".email") + ": "
+              td = @user.email
+        = link_to t(".edit"), edit_user_registration_path, class: "button is-warning edit-user-info-button"
+      
