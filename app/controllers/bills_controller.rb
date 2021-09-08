@@ -5,7 +5,7 @@ class BillsController < ApplicationController
 
   def index
     @q = Bill.ransack(params[:q])
-    @bills = @q.result.order(:id).page(params[:page])
+    @bills = @q.result.order(discussed_session_number: :desc).order(:submitted_session_number).page(params[:page])
     @user = current_user
   end
 
