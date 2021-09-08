@@ -1,34 +1,35 @@
 article
   .container
-    .box.bill
-      table.table
-        tbody
-          tr
-            td = t(".bill_title") + ": "
-            td = @bill.title
-          tr
-            td = t(".proposer") + ": "
-            td = @bill.proposer
-          tr
-            td = t(".submitted_session") + ": "
-            td = @bill.submitted_session_number
-          tr
-            td = t(".discussed_session") + ": "
-            td = @bill.discussed_session_number
-          tr
-            td = t(".bill_number") + ": "
-            td = @bill.bill_number
-          tr
-            td = t(".status") + ": "
-            td = @bill.status
-          tr
-            td = t(".link") + ": "
-            td 
-              = @bill.honbun ? link_to(t(".honbun"), @bill.honbun) : ""
-              br
-              = @bill.proposal ? link_to(t(".proposal"), @bill.proposal) : ""
+    .bill
+      .box
+        table.table
+          tbody
+            tr
+              td = t(".bill_title") + ": "
+              td = @bill.title
+            tr
+              td = t(".proposer") + ": "
+              td = @bill.proposer
+            tr
+              td = t(".submitted_session") + ": "
+              td = @bill.submitted_session_number
+            tr
+              td = t(".discussed_session") + ": "
+              td = @bill.discussed_session_number
+            tr
+              td = t(".bill_number") + ": "
+              td = @bill.bill_number
+            tr
+              td = t(".status") + ": "
+              td = @bill.status
+            tr
+              td = t(".link") + ": "
+              td 
+                = @bill.honbun ? link_to(t(".honbun"), @bill.honbun) : ""
+                br
+                = @bill.proposal ? link_to(t(".proposal"), @bill.proposal) : ""
 
-    = link_to t(".back"), bills_path
+      = link_to t(".back"), bills_path
 
     .comments
       h2.title.is-4 = t ".comment_title"
