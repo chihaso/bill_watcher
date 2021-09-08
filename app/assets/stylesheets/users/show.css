@@ -1,0 +1,23 @@
+.user-page-contents {
+  margin: 30px auto 0 auto;
+  max-width: 500px;
+}
+
+.user-info-box {
+  margin-top: 60px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-info .user-icon {
+  margin: 10px auto 40px auto;
+}
+
+.edit-user-info-button {
+  width: 100%;
+  margin: 5% auto auto auto;
+}
