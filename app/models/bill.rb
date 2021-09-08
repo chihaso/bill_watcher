@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Bill < ApplicationRecord
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   class << self
     def update_all
