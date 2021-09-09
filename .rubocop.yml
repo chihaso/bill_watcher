@@ -16,6 +16,8 @@ AllCops:
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
 
 Performance:
   Exclude:
