@@ -1,0 +1,1 @@
+bin/bundle exec rubocop -a
