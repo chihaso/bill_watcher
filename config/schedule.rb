@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+require File.expand_path(File.dirname(__FILE__) + "/environment")
 require "active_support/core_ext/time"
 
-set :output, "/Users/chibayuta/dev/myapps/bill_watcher/tmp/bill_update.log"
+set :output, "#{Rails.root}/log/cron.log"
 set :job_template, nil
 rails_env = ENV["RAILS_ENV"] || "development"
 set :environment, rails_env
