@@ -33,6 +33,6 @@ class UsersTest < ApplicationSystemTestCase
     assert_css "img.user-icon"
     assert_text users(:one).name
     assert_text users(:one).email
-    assert_css "a.button.edit-user-info"
+    assert_css "a.button.edit-user-info-button"
   end
 end
