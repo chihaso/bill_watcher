@@ -1,2 +1,3 @@
 bin/rails test
+bin/rails test:system
 bin/lint
