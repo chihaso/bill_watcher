@@ -44,6 +44,10 @@ commands:
           name: run tests
           command: bundle exec rails test
           when: always
+      - run:
+          name: run system tests
+          command: bundle exec rails test:system
+          when: always
       - store_test_results:
           path: test/reports
       - store_artifacts:

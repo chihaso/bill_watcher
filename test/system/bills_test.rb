@@ -25,7 +25,7 @@ class BillsTest < ApplicationSystemTestCase
     assert_selector "div.comment" do
       assert_selector "span.user-name", text: users(:one).name
       assert_css "img.small-user-icon"
-      assert_selector "p.comment__body_time", text: /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
+      assert_selector "p.comment__right_head_time", text: /\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
       assert_text "法案oneへのコメント"
     end
   end
