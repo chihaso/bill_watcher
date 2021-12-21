@@ -2,6 +2,8 @@
 
 class Bill < ApplicationRecord
   has_many :comments, dependent: :destroy
+  has_many :watches, dependent: :destroy
+  has_many :watching_users, through: :watches, foreign_key: :user_id, source: :user
 
   class << self
     def update_all
