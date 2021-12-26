@@ -1,0 +1,17 @@
+td.bill-table__body__watch
+  - if user.watching_bill?(bill.id)
+    = link_to('ウォッチ解除',
+              watch_path(user.watches.find_by!(bill_id: bill.id, user_id: user.id)),
+              data: { watching: true, user_id: user.id, bill_id: bill.id, watch_id: user.watches.find_by!(bill_id: bill.id).id},
+              id: "watch-button-#{key}",
+              class: "button is-link",
+              method: :delete,
+              remote: true)
+  - else
+    = link_to('ウォッチする',
+              watches_path(user_id: user.id, bill_id: bill.id),
+              data: { watching: false, user_id: user.id, bill_id: bill.id, watch_id: nil },
+              id: "watch-button-#{key}",
+              class: "button is-link is-outlined",
+              method: :post,
+              remote: true)
