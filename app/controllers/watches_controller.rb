@@ -2,13 +2,19 @@
 
 class WatchesController < ApplicationController
   def create
-    Watch.create!(watch_params)
-    redirect_to bills_path
+    raise "他のユーザーのデータを変更することはできません" if watch_params[:user_id].to_i != current_user.id
+
+    watch = Watch.create!(watch_params)
+    render json: { watch_id: watch.id }
   end
 
   def destroy
-    Watch.destroy(params[:id])
-    redirect_to bills_path
+    watch = Watch.find(params[:id])
+
+    raise "他のユーザーのデータを変更することはできません" if watch.user != current_user
+
+    watch.destroy
+    head :ok
   end
 
   private
