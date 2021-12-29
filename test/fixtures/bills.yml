@@ -15,7 +15,7 @@ two:
   proposer: MyString
   submitted_session_number: 1
   discussed_session_number: 1
-  bill_number: 1
+  bill_number: 2
   honbun: MyText
   proposal: MyText
   status: MyText
