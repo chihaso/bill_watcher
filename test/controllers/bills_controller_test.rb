@@ -2,6 +2,8 @@
 
 require "test_helper"
 
+Rails.application.routes.default_url_options[:protocol] = 'https'
+
 class BillsControllerTest < ActionDispatch::IntegrationTest
   test "indexアクションを実行できる" do
     get bills_url
