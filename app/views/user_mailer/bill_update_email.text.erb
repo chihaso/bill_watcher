@@ -1,0 +1,9 @@
+<%= @user.name %> 様
+
+審議法案ウォッチャーからのお知らせです。
+
+ウォッチ中の法案の審議状況が <%= @bills.size %>件 更新されました。
+
+<% @bills.each do |bill| %>
+  - <%= bill.title %> ( <%= bill_url(bill) %> )
+<% end %>

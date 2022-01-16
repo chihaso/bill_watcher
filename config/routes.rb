@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "users/show"
   devise_for :users
   root to: "bills#index"
   resources :bills, only: [:index, :show] do
@@ -9,4 +8,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :update, :destroy]
   end
   resources :users, only: [:show]
+  resources :watches, only: [:create, :destroy]
 end

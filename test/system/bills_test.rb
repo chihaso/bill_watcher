@@ -13,6 +13,26 @@ class BillsTest < ApplicationSystemTestCase
     assert_selector "h1", text: I18n.t("bills.index.title")
   end
 
+  test "法案一覧ページのウォッチボタンをクリックすると表示が切り替わってWatchのレコードが変化する" do
+    visit bills_url
+
+    # ウォッチ時
+    assert_equal page.find("#watch-button-0").text, "ウォッチする"
+    page.find("#watch-button-0").click
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      until page.find("#watch-button-0").text == "ウォッチ解除"; end
+    end
+    watch = users(:one).watches.last
+    assert_equal watch.bill, bills(:two)
+
+    # ウォッチ解除時
+    page.find("#watch-button-0").click
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      until page.find("#watch-button-0").text == "ウォッチする"; end
+    end
+    assert_nil Watch.find_by(id: watch.id)
+  end
+
   test "個別の法案ページでその法案に紐づくコメントが全て表示される" do
     bill = bills(:one)
     visit bill_url(bill)

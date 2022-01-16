@@ -1,21 +1,29 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  proposer: MyString
+  title: 一つ目の法案
+  proposer: 衆議院
   submitted_session_number: 1
   discussed_session_number: 1
   bill_number: 1
-  honbun: MyText
-  proposal: MyText
-  status: MyText
+  honbun: 一つ目の法案の本文URL
+  proposal: 一つ目の法案の提出時法律案URL
+  status: 成立
 
 two:
-  title: MyString
-  proposer: MyString
-  submitted_session_number: 1
-  discussed_session_number: 1
-  bill_number: 1
-  honbun: MyText
-  proposal: MyText
-  status: MyText
+  title: 二つ目の法案
+  proposer: 内閣
+  submitted_session_number: 2
+  discussed_session_number: 3
+  bill_number: 2
+  honbun: 二つ目の法案の本文URL
+  proposal: 二つ目の法案の提出時法律案URL
+  status: 未了
+
+three:
+  title: 三つ目の法案
+  proposer: 参議院
+  submitted_session_number: 3
+  discussed_session_number: 3
+  bill_number: 3
+  honbun: 三つ目の法案の本文URL
+  proposal: 三つ目の法案の提出時法律案URL
+  status: 衆議院で閉会中審査
