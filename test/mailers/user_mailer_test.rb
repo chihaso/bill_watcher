@@ -12,8 +12,8 @@ class UserMailerTest < ActionMailer::TestCase
       \r
       ウォッチ中の法案の審議状況が 2件 更新されました。\r
       \r
-        - #{bills(:one).title} ( #{'https://bill-watcher.com/bills/' + bills(:one).id.to_s} )\r
-        - #{bills(:two).title} ( #{'https://bill-watcher.com/bills/' + bills(:two).id.to_s} )\r
+        - #{bills(:one).title} ( #{'http://bill-watcher.com/bills/' + bills(:one).id.to_s} )\r
+        - #{bills(:two).title} ( #{'http://bill-watcher.com/bills/' + bills(:two).id.to_s} )\r
       \r
     BODY_TEXT
 
