@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-Rails.application.routes.default_url_options[:protocol] = 'https'
+Rails.application.routes.default_url_options[:protocol] = "https"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
