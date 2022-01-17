@@ -34,39 +34,40 @@
       = f.submit t(".refine"), class: "button is-light"
 
 article
-  .container
-    = paginate @bills, window: 2, outer_window: 1
-    table.table.is-hoverable.bill-table
-      thead.bill-table__head
-        tr
-          th.bill-table__head__submitted-session
-            = t ".submitted_session"
-          th.bill-table__head__discussed-session
-            = t ".discussed_session"
-          th.bill-table__head__bill-number
-            = t ".bill_number"
-          th.bill-table__head__title
-            = t ".bill_title"
-          th.bill-table__head__status
-            = t ".status"
-          th
-
-      tbody.bill-table__body
-        - @bills.each_with_index do |bill, index|
+  div data-turbolinks="false"
+    .container
+      = paginate @bills, window: 2, outer_window: 1
+      table.table.is-hoverable.bill-table
+        thead.bill-table__head
           tr
-            td.bill-table__body__submitted-session-number
-              = bill.submitted_session_number
-            td.bill-table__body__discussed-session-number
-              = bill.discussed_session_number
-            td.bill-table__body__bill-number
-              = bill.bill_number
-            td.bill-table__body__title
-              = link_to bill.title, bill
-            td.bill-table__body__status
-              = bill.status
-            - if current_user 
-              = render partial: "bills/watch_button", locals: { user: current_user, bill: bill, key: index }
-              
-    = paginate @bills, window: 2, outer_window: 1
+            th.bill-table__head__submitted-session
+              = t ".submitted_session"
+            th.bill-table__head__discussed-session
+              = t ".discussed_session"
+            th.bill-table__head__bill-number
+              = t ".bill_number"
+            th.bill-table__head__title
+              = t ".bill_title"
+            th.bill-table__head__status
+              = t ".status"
+            th
+
+        tbody.bill-table__body
+          - @bills.each_with_index do |bill, index|
+            tr
+              td.bill-table__body__submitted-session-number
+                = bill.submitted_session_number
+              td.bill-table__body__discussed-session-number
+                = bill.discussed_session_number
+              td.bill-table__body__bill-number
+                = bill.bill_number
+              td.bill-table__body__title
+                = link_to bill.title, bill
+              td.bill-table__body__status
+                = bill.status
+              - if current_user 
+                = render partial: "bills/watch_button", locals: { user: current_user, bill: bill, key: index }
+                
+      = paginate @bills, window: 2, outer_window: 1
 
 = javascript_pack_tag 'bill/watch'

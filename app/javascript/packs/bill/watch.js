@@ -1,4 +1,4 @@
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("load", () => {
   const watchButtons = document.querySelectorAll("a[id^=watch-button]");
   
   watchButtons.forEach((watchButton) => {
