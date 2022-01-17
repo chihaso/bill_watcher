@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener("turbolinks:load", () => {
   const watchButtons = document.querySelectorAll("a[id^=watch-button]");
   
   watchButtons.forEach((watchButton) => {
@@ -20,4 +20,3 @@ window.addEventListener("load", () => {
     });
   });
 });
-

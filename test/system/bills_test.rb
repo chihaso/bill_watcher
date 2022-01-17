@@ -31,6 +31,25 @@ class BillsTest < ApplicationSystemTestCase
       until page.find("#watch-button-0").text == "ウォッチする"; end
     end
     assert_nil Watch.find_by(id: watch.id)
+
+    # 法案一覧の別ページに移動した時
+    50.times { Bill.create! }
+    visit bills_url
+    assert_difference "users(:one).watches.count", +2 do
+      page.find("#watch-button-0").click
+      Timeout.timeout(Capybara.default_max_wait_time) do
+        until page.find("#watch-button-0").text == "ウォッチ解除"; end
+      end
+      page.find(".pagination-next", match: :first).click
+      sleep 10
+      Timeout.timeout(Capybara.default_max_wait_time) do
+        until page.find("#watch-button-0").text == "ウォッチする"; end
+      end
+      page.find("#watch-button-0").click
+      Timeout.timeout(Capybara.default_max_wait_time) do
+        until page.find("#watch-button-0").text == "ウォッチ解除"; end
+      end
+    end
   end
 
   test "個別の法案ページでその法案に紐づくコメントが全て表示される" do
