@@ -15,14 +15,14 @@ class BillUpdateNotifierTest < ActiveSupport::TestCase
       {
         bill_id:    bills(:one).id,
         bill_title: bills(:one).title,
-        old_status: '変更前ステータス',
-        new_status: '変更後ステータス',
+        old_status: "変更前ステータス",
+        new_status: "変更後ステータス",
       },
       {
         bill_id:    bills(:two).id,
         bill_title: bills(:two).title,
-        old_status: '未了',
-        new_status: '可決',
+        old_status: "未了",
+        new_status: "可決",
       }
     ]
 
@@ -36,7 +36,7 @@ class BillUpdateNotifierTest < ActiveSupport::TestCase
 
     assert addreses_email_send.include?(users(:one).email)
     assert addreses_email_send.include?(users(:two).email)
-    assert addreses_email_send.include?(ENV['ADMIN_EMAIL'])
+    assert addreses_email_send.include?(ENV["ADMIN_EMAIL"])
     assert_not addreses_email_send.include?(users(:three).email)
 
     ActionMailer::Base.deliveries.clear

@@ -18,11 +18,10 @@ class BillUpdateNotifier
     end
 
     private
-
-    def target_bills_info(status_changed_bills_info, user)
-      status_changed_bills_info.select do |bill_info|
-        user.watching_bills.ids.include?(bill_info[:bill_id])
+      def target_bills_info(status_changed_bills_info, user)
+        status_changed_bills_info.select do |bill_info|
+          user.watching_bills.ids.include?(bill_info[:bill_id])
+        end
       end
-    end
   end
 end

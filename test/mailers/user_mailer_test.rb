@@ -6,15 +6,15 @@ class UserMailerTest < ActionMailer::TestCase
   test "bill_update_email" do
     bill_info_1 = {
       bill_id:    1,
-      bill_title: '一つ目の法案',
-      old_status: '変更前ステータス',
-      new_status: '変更後ステータス',
+      bill_title: "一つ目の法案",
+      old_status: "変更前ステータス",
+      new_status: "変更後ステータス",
     }
     bill_info_2 = {
       bill_id:    2,
-      bill_title: '二つ目の法案',
-      old_status: '未了',
-      new_status: '可決',
+      bill_title: "二つ目の法案",
+      old_status: "未了",
+      new_status: "可決",
     }
     email = UserMailer.with(user: users(:one), target_bills_info: [bill_info_1, bill_info_2]).bill_update_email
     body_text = <<~BODY_TEXT
