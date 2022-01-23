@@ -10,6 +10,8 @@ class Bill < ApplicationRecord
       logger.info "議案データの取得を開始"
       status_changed_bills = []
       BillScrapper.all.each do |bill|
+        next if bill[:honbun].nil? # 議案ページのテーブルには本文リンクのない行があり、そうした項目は直前の行の法案と同じ法案についての除法であるようなので、更新処理から除外する。
+
         updating_bill = Bill.find_or_initialize_by(existing_check_hash(bill))
         if updating_bill.persisted? && updating_bill.status != bill[:status]
           status_changed_bills << bill_info(updating_bill, bill[:status])
@@ -32,6 +34,7 @@ class Bill < ApplicationRecord
         {
           submitted_session_number: bill[:submitted_session_number],
           bill_number:              bill[:bill_number],
+          proposer:                 bill[:proposer],
           discussed_session_number: bill[:discussed_session_number],
         }
       end
