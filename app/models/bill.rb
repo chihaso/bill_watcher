@@ -7,7 +7,7 @@ class Bill < ApplicationRecord
 
   class << self
     def update_all
-      logger.info "議案データの取得を開始" + time_stamp
+      logger.info "議案データの取得を開始"
       status_changed_bills = []
       BillScrapper.all.each do |bill|
         updating_bill = Bill.find_or_initialize_by(existing_check_hash(bill))
@@ -16,10 +16,10 @@ class Bill < ApplicationRecord
         end
         updating_bill.update!(bill)
       end
-      logger.info "議案データの更新に成功" + time_stamp
-      BillUpdateNotifier.send_email_to_watching_users(status_changed_bills)
+      logger.info "議案データの更新に成功"
+      BillUpdateNotifier.send_email_to_watching_users_and_admin(status_changed_bills)
     rescue =>e
-      logger.error "議案データの更新に失敗" + time_stamp
+      logger.error "議案データの更新に失敗"
       logger.error e.full_message
     end
 
