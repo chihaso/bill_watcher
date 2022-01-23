@@ -4,7 +4,19 @@ require "test_helper"
 
 class UserMailerTest < ActionMailer::TestCase
   test "bill_update_email" do
-    email = UserMailer.with(user: users(:one), bills: [bills(:one), bills(:two)]).bill_update_email
+    bill_info_1 = {
+      bill_id:    1,
+      bill_title: '一つ目の法案',
+      old_status: '変更前ステータス',
+      new_status: '変更後ステータス',
+    }
+    bill_info_2 = {
+      bill_id:    2,
+      bill_title: '二つ目の法案',
+      old_status: '未了',
+      new_status: '可決',
+    }
+    email = UserMailer.with(user: users(:one), target_bills_info: [bill_info_1, bill_info_2]).bill_update_email
     body_text = <<~BODY_TEXT
       #{users(:one).name} 様\r
       \r
@@ -12,8 +24,8 @@ class UserMailerTest < ActionMailer::TestCase
       \r
       ウォッチ中の法案の審議状況が 2件 更新されました。\r
       \r
-        - #{bills(:one).title} ( #{'http://bill-watcher.com/bills/' + bills(:one).id.to_s} )\r
-        - #{bills(:two).title} ( #{'http://bill-watcher.com/bills/' + bills(:two).id.to_s} )\r
+        - 一つ目の法案 ( http://bill-watcher.com/bills/1 ): 変更前ステータス → 変更後ステータス\r
+        - 二つ目の法案 ( http://bill-watcher.com/bills/2 ): 未了 → 可決\r
       \r
     BODY_TEXT
 

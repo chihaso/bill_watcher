@@ -11,11 +11,24 @@ class BillUpdateNotifierTest < ActiveSupport::TestCase
     Watch.create!(user: users(:two), bill: bills(:two))
     Watch.create!(user: users(:three), bill: bills(:three))
 
-    status_changed_bills = [bills(:one), bills(:two)]
+    status_changed_bills_info = [
+      {
+        bill_id:    bills(:one).id,
+        bill_title: bills(:one).title,
+        old_status: '変更前ステータス',
+        new_status: '変更後ステータス',
+      },
+      {
+        bill_id:    bills(:two).id,
+        bill_title: bills(:two).title,
+        old_status: '未了',
+        new_status: '可決',
+      }
+    ]
 
     perform_enqueued_jobs do
       assert_difference "ActionMailer::Base.deliveries.size", +3 do
-        BillUpdateNotifier.send_email_to_watching_users_and_admin(status_changed_bills)
+        BillUpdateNotifier.send_email_to_watching_users_and_admin(status_changed_bills_info)
       end
     end
 

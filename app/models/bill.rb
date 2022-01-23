@@ -12,7 +12,7 @@ class Bill < ApplicationRecord
       BillScrapper.all.each do |bill|
         updating_bill = Bill.find_or_initialize_by(existing_check_hash(bill))
         if updating_bill.persisted? && updating_bill.status != bill[:status]
-          status_changed_bills << updating_bill
+          status_changed_bills << bill_info(updating_bill, bill[:status])
         end
         updating_bill.update!(bill)
       end
@@ -32,7 +32,16 @@ class Bill < ApplicationRecord
         {
           submitted_session_number: bill[:submitted_session_number],
           bill_number:              bill[:bill_number],
-          discussed_session_number: bill[:discussed_session_number]
+          discussed_session_number: bill[:discussed_session_number],
+        }
+      end
+
+      def bill_info(bill, new_status)
+        {
+          bill_id:    bill.id,
+          bill_title: bill.title,
+          old_status: bill.status,
+          new_status: new_status,
         }
       end
   end

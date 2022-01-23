@@ -2,8 +2,8 @@
 
 審議法案ウォッチャーからのお知らせです。
 
-ウォッチ中の法案の審議状況が <%= @bills.size %>件 更新されました。
+ウォッチ中の法案の審議状況が <%= @target_bills_info.size %>件 更新されました。
 
-<% @bills.each do |bill| %>
-  - <%= bill.title %> ( <%= bill_url(bill) %> )
+<% @target_bills_info.each do |bill_info| %>
+  - <%= bill_info[:bill_title] %> ( <%= bill_url(id: bill_info[:bill_id]) %> ): <%= bill_info[:old_status] %> → <%= bill_info[:new_status] %>
 <% end %>
