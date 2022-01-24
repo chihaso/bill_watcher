@@ -4,6 +4,8 @@ require "test_helper"
 
 class AdminMailerTest < ActionMailer::TestCase
   test "bill_update_email" do
+    return unless ENV["ADMIN_EMAIL"]
+
     bill_info_1 = {
       bill_id:    1,
       bill_title: "一つ目の法案",

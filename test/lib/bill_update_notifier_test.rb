@@ -26,8 +26,10 @@ class BillUpdateNotifierTest < ActiveSupport::TestCase
       }
     ]
 
+    number_of_mail = ENV["ADMIN_EMAIL"] ? 3 : 2
+
     perform_enqueued_jobs do
-      assert_difference "ActionMailer::Base.deliveries.size", +3 do
+      assert_difference "ActionMailer::Base.deliveries.size", +number_of_mail do
         BillUpdateNotifier.send_email_to_watching_users_and_admin(status_changed_bills_info)
       end
     end
@@ -36,7 +38,7 @@ class BillUpdateNotifierTest < ActiveSupport::TestCase
 
     assert addreses_email_send.include?(users(:one).email)
     assert addreses_email_send.include?(users(:two).email)
-    assert addreses_email_send.include?(ENV["ADMIN_EMAIL"])
+    ENV["ADMIN_EMAIL"] && assert(addreses_email_send.include?(ENV["ADMIN_EMAIL"]))
     assert_not addreses_email_send.include?(users(:three).email)
 
     ActionMailer::Base.deliveries.clear
