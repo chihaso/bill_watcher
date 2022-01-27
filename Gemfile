@@ -32,7 +32,6 @@ gem "bootsnap", ">= 1.4.2", require: false
 
 # not default
 gem "slim-rails"
-gem "whenever"
 gem "hurricane_trimar"
 gem "kaminari"
 gem "ransack"
