@@ -5,5 +5,5 @@
 ウォッチ中の法案の審議状況が <%= @target_bills_info.size %>件 更新されました。
 
 <% @target_bills_info.each do |bill_info| %>
-  - <%= bill_info[:bill_title] %> ( <%= bill_url(id: bill_info[:bill_id]) %> ): <%= bill_info[:old_status] %> → <%= bill_info[:new_status] %>
+  - <%= bill_info[:bill_title] %> ( <%= bill_url(id: bill_info[:bill_id], host: 'bill-watcher.com') %> ): <%= bill_info[:old_status] %> → <%= bill_info[:new_status] %>
 <% end %>
