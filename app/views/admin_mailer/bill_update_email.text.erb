@@ -2,7 +2,7 @@
 
 審議状況が更新された法案
 <% @status_changed_bills_info.each do |bill_info| %>
-  - <%= bill_info[:bill_title] %> ( <%= bill_url(id: bill_info[:bill_id]) %> ): <%= bill_info[:old_status] %> → <%= bill_info[:new_status] %>
+  - <%= bill_info[:bill_title] %> ( <%= bill_url(id: bill_info[:bill_id], host: 'bill-watcher.com') %> ): <%= bill_info[:old_status] %> → <%= bill_info[:new_status] %>
 <% end %>
 
 通知を送ったユーザー数: <%= @notified_user_count %>
